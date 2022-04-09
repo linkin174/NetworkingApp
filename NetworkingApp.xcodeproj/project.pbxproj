@@ -17,6 +17,8 @@
 		70519C2F28009B7A00FA33B3 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70519C2E28009B7A00FA33B3 /* NetworkManager.swift */; };
 		70519C3228009D1C00FA33B3 /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70519C3128009D1C00FA33B3 /* Image.swift */; };
 		70519C362800AEE700FA33B3 /* CustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70519C352800AEE700FA33B3 /* CustomCell.swift */; };
+		709FA0EC280168F600240C9B /* AuthorInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 709FA0EB280168F600240C9B /* AuthorInfoViewController.swift */; };
+		709FA0F028019C9B00240C9B /* RandomImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 709FA0EF28019C9B00240C9B /* RandomImageViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +34,8 @@
 		70519C2E28009B7A00FA33B3 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		70519C3128009D1C00FA33B3 /* Image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
 		70519C352800AEE700FA33B3 /* CustomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCell.swift; sourceTree = "<group>"; };
+		709FA0EB280168F600240C9B /* AuthorInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorInfoViewController.swift; sourceTree = "<group>"; };
+		709FA0EF28019C9B00240C9B /* RandomImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomImageViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,6 +94,8 @@
 				70519C162800217700FA33B3 /* ViewController.swift */,
 				70519C2A2800265C00FA33B3 /* ImageGalleryViewController.swift */,
 				70519C352800AEE700FA33B3 /* CustomCell.swift */,
+				709FA0EB280168F600240C9B /* AuthorInfoViewController.swift */,
+				709FA0EF28019C9B00240C9B /* RandomImageViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -205,6 +211,8 @@
 				70519C2B2800265C00FA33B3 /* ImageGalleryViewController.swift in Sources */,
 				70519C362800AEE700FA33B3 /* CustomCell.swift in Sources */,
 				70519C152800217700FA33B3 /* SceneDelegate.swift in Sources */,
+				709FA0EC280168F600240C9B /* AuthorInfoViewController.swift in Sources */,
+				709FA0F028019C9B00240C9B /* RandomImageViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

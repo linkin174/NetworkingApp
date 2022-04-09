@@ -8,36 +8,37 @@
 import UIKit
 
 class ImageGalleryViewController: UICollectionViewController {
-    var images: [Image] = []
-    
+    var viewImages: [Image] = []
+
     @IBOutlet var activityIndicator: UIActivityIndicatorView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        NetworkManager.shared.fetchData(from: NetworkManager.shared.apiURLString) { images, error in
-            DispatchQueue.main.async {
-                self.images = images ?? []
-                self.collectionView.reloadData()
-                self.activityIndicator.stopAnimating()
-            }
-        }
-        
-//       fetchImages()
-//         Uncomment the following line to preserve selection between presentations
-//         self.clearsSelectionOnViewWillAppear = false
-//        self.collectionView!.register(UICollectionViewCell.self,[] forCellWithReuseIdentifier: "image")
         activityIndicator.startAnimating()
         activityIndicator.hidesWhenStopped = true
+        NetworkManager.shared.fetchImages(from: NetworkManager.Links.randomImagesList.rawValue) { result in
+            switch result {
+            case .success(let images):
+                self.viewImages = images
+                DispatchQueue.main.async {
+                    self.collectionView.reloadData()
+                    self.activityIndicator.stopAnimating()
+                }
+            case .failure(let error):
+                self.showAlert(with: error.localizedDescription)
+            }
+        }
     }
-    /*
-     // MARK: - Navigation
 
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-         // Get the new view controller using [segue destinationViewController].
-         // Pass the selected object to the new view controller.
-     }
-     */
+    // MARK: - Navigation
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "authorInfo" {
+            guard let cell = sender as? CustomCell, let indexPath = self.collectionView.indexPath(for: cell) else { return }
+            guard let aboutVC = segue.destination as? AuthorInfoViewController else { return }
+            aboutVC.image = viewImages[indexPath.item]
+        }
+    }
 
     // MARK: UICollectionViewDataSource
 
@@ -46,51 +47,28 @@ class ImageGalleryViewController: UICollectionViewController {
     }
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return images.count
+        return viewImages.count
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "image", for: indexPath) as! CustomCell
-        let image = images[indexPath.item]
+        let image = viewImages[indexPath.item]
         cell.configureCell(with: image)
         return cell
     }
-
-    // MARK: UICollectionViewDelegate
-
-    /*
-     // Uncomment this method to specify if the specified item should be highlighted during tracking
-     override func collectionView(_ collectionView: UICollectionView, shouldHighlightItemAt indexPath: IndexPath) -> Bool {
-         return true
-     }
-     */
-
-    /*
-     // Uncomment this method to specify if the specified item should be selected
-     override func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
-         return true
-     }
-     */
-
-    /*
-     // Uncomment these methods to specify if an action menu should be displayed for the specified item, and react to actions performed on the item
-     override func collectionView(_ collectionView: UICollectionView, shouldShowMenuForItemAt indexPath: IndexPath) -> Bool {
-         return false
-     }
-
-     override func collectionView(_ collectionView: UICollectionView, canPerformAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) -> Bool {
-         return false
-     }
-
-     override func collectionView(_ collectionView: UICollectionView, performAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) {
-
-     }
-     */
 }
 
 extension ImageGalleryViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let width = UIScreen.main.bounds.width
-        return CGSize(width: width / 2 - 20, height: width / 2 - 20)
+        let cellSideSize = UIScreen.main.bounds.width / 2 - 20
+        return CGSize(width: cellSideSize, height: cellSideSize)
+    }
+}
+
+extension ImageGalleryViewController {
+    private func showAlert(with message: String) {
+        let alert = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Close", style: .cancel))
+        present(alert, animated: true)
     }
 }

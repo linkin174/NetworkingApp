@@ -6,8 +6,12 @@
 //
 import Foundation
 import UIKit
-
 class NetworkManager {
+
+    enum Links: String {
+        case randomImage = "https://picsum.photos/1300/2800"
+        case randomImagesList = "https://picsum.photos/v2/list"
+    }
     
     enum Result<Success, Error: Swift.Error> {
         case success(Success)
@@ -16,21 +20,26 @@ class NetworkManager {
     
     static let shared = NetworkManager()
     
-    let apiURLString = "https://picsum.photos/v2/list"
+    func fetchImage(from url: String, completion: @escaping (UIImage) -> Void) {
+        guard let url = URL(string: url) else { return }
+        URLSession.shared.dataTask(with: url) { data, _, error in
+            guard data != nil else {
+                print(error?.localizedDescription ?? "No error" )
+                return }
+            guard let image = UIImage(data: data!) else { return }
+            completion(image)
+        }.resume()
+    }
     
-    func fetchData(from url: String, completion: @escaping ([Image]?, Error?) -> ()) {
-        guard let url = URL(string: apiURLString) else { return }
-        URLSession.shared.dataTask(with: url) { (data, response, error) in
-            guard let data = data else {
-                print(error?.localizedDescription ?? "No errors")
-                return
-            }
+    func fetchImages(from url: String, completion: @escaping (Result<[Image], Error>) -> Void) {
+        guard let url = URL(string: url) else { return }
+        URLSession.shared.dataTask(with: url) { (data, _, error) in
+            guard let data = data, let error = error else { return }
             do {
                 let images = try JSONDecoder().decode([Image].self, from: data)
-                completion(images, nil)
-            } catch let error {
-                completion(nil, error)
-                print(error)
+                completion(.success(images))
+            } catch {
+                completion(.failure(error))
             }
         }.resume()
     }
