@@ -31,15 +31,15 @@ class NetworkManager {
         }.resume()
     }
     
-    func fetchImages(from url: String, completion: @escaping (Result<[Image], Error>) -> Void) {
+    func fetchImages(from url: String, completion: @escaping ([Image]) -> Void) {
         guard let url = URL(string: url) else { return }
         URLSession.shared.dataTask(with: url) { (data, _, error) in
-            guard let data = data, let error = error else { return }
+            guard let data = data else { return }
             do {
                 let images = try JSONDecoder().decode([Image].self, from: data)
-                completion(.success(images))
-            } catch {
-                completion(.failure(error))
+                completion(images)
+            } catch let error {
+                print(error)
             }
         }.resume()
     }
