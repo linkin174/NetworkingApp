@@ -7,7 +7,6 @@
 import Foundation
 import UIKit
 class NetworkManager {
-
     enum NetworkError: Error {
         case badURL
     }
@@ -29,15 +28,19 @@ class NetworkManager {
         URLSession.shared.dataTask(with: url) { data, _, error in
             guard let data = data, let image = UIImage(data: data) else {
                 completion(.failure(error!))
-                return }
+                return
+            }
             completion(.success(image))
         }.resume()
     }
     
     func fetchImages(from url: String, completion: @escaping (Result<[Image], Error>) -> Void) {
         guard let url = URL(string: url) else { return }
-        URLSession.shared.dataTask(with: url) { (data, _, error) in
-            guard let data = data else { return }
+        URLSession.shared.dataTask(with: url) { data, _, error in
+            guard let data = data else {
+                completion(.failure(error!))
+                return
+            }
             do {
                 guard let images = try? JSONDecoder().decode([Image].self, from: data) else {
                     completion(.failure(error!))
@@ -48,7 +51,6 @@ class NetworkManager {
         }.resume()
     }
 
-    
-    init (){}
+    init() {}
 }
     

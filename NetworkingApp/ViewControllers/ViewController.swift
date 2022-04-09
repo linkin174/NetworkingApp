@@ -8,6 +8,9 @@
 import UIKit
 
 class ViewController: UIViewController {
-
+  
+    @IBAction func showGalleryButtonPressed() {
+        performSegue(withIdentifier: "toImageGalery", sender: nil)
+    }
 }
 
