@@ -13,28 +13,26 @@ class RandomImageViewController: UIViewController {
     @IBOutlet var imageView: UIImageView!
     override func viewDidLoad() {
         super.viewDidLoad()
-        NetworkManager.shared.fetchImage(from: NetworkManager.Links.randomImage.rawValue) { image in
-            DispatchQueue.main.async {
-                self.imageView.image = image
-                self.activityIndicator.stopAnimating()
+        NetworkManager.shared.fetchImage(from: NetworkManager.Links.randomImage.rawValue) { result in
+            print(result)
+            switch result {
+                
+            case .success(let image):
+                DispatchQueue.main.async {
+                    self.imageView.image = image
+                    self.activityIndicator.stopAnimating()
+                }
+            case .failure(let error):
+                print(error)
             }
         }
     }
-
-//    private func fetchImage() {
-//        guard let url = URL(string: NetworkManager.Links.randomImage.rawValue) else { return }
-//
-//        URLSession.shared.dataTask(with: url) { data, response, error in
-//            guard let data = data, let response = response else {
-//                print(error?.localizedDescription ?? "No error description")
-//                return
-//            }
-//            print(response)
-//            guard let image = UIImage(data: data) else { return }
-//            DispatchQueue.main.async {
-//                self.imageView.image = image
-////                self.activityIndicator.stopAnimating()
-//            }
-//        }.resume()
-//}
 }
+//
+//extension UIViewController {
+//    func showAlert(with error: Error?) {
+//        let alert = UIAlertController(title: error, message: error as? CustomStringConvertible as! String, preferredStyle: .alert)
+//        alert.addAction(UIAlertAction(title: "OK", style: .cancel))
+//        present(alert, animated: true)
+//    }
+//}

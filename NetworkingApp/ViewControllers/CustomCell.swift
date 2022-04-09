@@ -11,9 +11,15 @@ class CustomCell: UICollectionViewCell {
     @IBOutlet var imageView: UIImageView!
 
     func configureCell(with image: Image) {
-        NetworkManager.shared.fetchImage(from: image.download_url ?? "") { image in
-            DispatchQueue.main.async {
-                self.imageView.image = image
+        NetworkManager.shared.fetchImage(from: image.download_url ?? "") { result in
+            switch result {
+                
+            case .success(let image):
+                DispatchQueue.main.async {
+                    self.imageView.image = image
+                }
+            case .failure(let error):
+                print(error)
             }
         }
     }

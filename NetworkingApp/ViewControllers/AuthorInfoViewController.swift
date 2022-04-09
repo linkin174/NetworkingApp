@@ -15,9 +15,16 @@ class AuthorInfoViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        NetworkManager.shared.fetchImage(from: image.download_url ?? "") { image in
-            DispatchQueue.main.async {
-                self.imageView.image = image
+        NetworkManager.shared.fetchImage(from: image.download_url ?? "") { result in
+            
+            switch result {
+                
+            case .success(let image):
+                DispatchQueue.main.async {
+                    self.imageView.image = image
+                }
+            case .failure(let error):
+                print(error)
             }
         }
         authorNameLabel.text = image.author ?? "No author"
