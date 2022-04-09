@@ -128,9 +128,8 @@
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Jor-yp-Wy1">
                                 <rect key="frame" x="0.0" y="44" width="414" height="798"/>
                             </imageView>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" animating="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="nmL-BP-Ro7">
-                                <rect key="frame" x="189" y="403" width="37" height="37"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="nmL-BP-Ro7">
+                                <rect key="frame" x="188.5" y="402.5" width="37" height="37"/>
                                 <color key="color" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </activityIndicatorView>
                         </subviews>
@@ -138,7 +137,9 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="Jor-yp-Wy1" firstAttribute="leading" secondItem="suC-Qw-0ye" secondAttribute="leading" id="LFK-uM-D8C"/>
+                            <constraint firstItem="nmL-BP-Ro7" firstAttribute="centerX" secondItem="khC-RN-Nlo" secondAttribute="centerX" id="N1C-jD-UeA"/>
                             <constraint firstAttribute="bottom" secondItem="Jor-yp-Wy1" secondAttribute="bottom" id="Xlk-I7-4XJ"/>
+                            <constraint firstItem="nmL-BP-Ro7" firstAttribute="centerY" secondItem="khC-RN-Nlo" secondAttribute="centerY" id="lOK-0I-iDY"/>
                             <constraint firstItem="Jor-yp-Wy1" firstAttribute="top" secondItem="suC-Qw-0ye" secondAttribute="top" id="pCl-LU-0BR"/>
                             <constraint firstItem="suC-Qw-0ye" firstAttribute="trailing" secondItem="Jor-yp-Wy1" secondAttribute="trailing" id="puh-mF-Oyl"/>
                         </constraints>
