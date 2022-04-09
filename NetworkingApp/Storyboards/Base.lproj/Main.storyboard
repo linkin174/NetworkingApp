@@ -24,7 +24,7 @@
                                     <fontDescription key="titleFontDescription" type="boldSystem" pointSize="24"/>
                                 </buttonConfiguration>
                                 <connections>
-                                    <segue destination="A7N-9x-shP" kind="presentation" identifier="toImageGallery" modalPresentationStyle="fullScreen" id="0G0-QN-AbJ"/>
+                                    <segue destination="TJa-tp-70L" kind="presentation" identifier="toImageGallery" modalPresentationStyle="fullScreen" id="0G0-QN-AbJ"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="W3d-eE-fBz">
@@ -55,7 +55,7 @@
             </objects>
             <point key="canvasLocation" x="132" y="117"/>
         </scene>
-        <!--Image Gallery View Controller-->
+        <!--Random Photos-->
         <scene sceneID="vqT-HC-nHg">
             <objects>
                 <collectionViewController id="A7N-9x-shP" customClass="ImageGalleryViewController" customModule="NetworkingApp" customModuleProvider="target" sceneMemberID="viewController">
@@ -70,7 +70,7 @@
                             <inset key="sectionInset" minX="10" minY="10" maxX="10" maxY="10"/>
                         </collectionViewFlowLayout>
                         <activityIndicatorView key="backgroundView" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" id="lYU-wJ-iH8">
-                            <rect key="frame" x="0.0" y="-44" width="414" height="896"/>
+                            <rect key="frame" x="0.0" y="-88" width="414" height="896"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         </activityIndicatorView>
                         <cells>
@@ -108,13 +108,14 @@
                             <outlet property="delegate" destination="A7N-9x-shP" id="HcO-Hr-rH3"/>
                         </connections>
                     </collectionView>
+                    <navigationItem key="navigationItem" title="Random Photos" id="kMN-ed-cyj"/>
                     <connections>
                         <outlet property="activityIndicator" destination="lYU-wJ-iH8" id="7MU-Gh-tn8"/>
                     </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LiR-CO-3bZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="970" y="-52"/>
+            <point key="canvasLocation" x="1879.7101449275365" y="-52.232142857142854"/>
         </scene>
         <!--Random Image View Controller-->
         <scene sceneID="s3d-mT-SLK">
@@ -188,7 +189,26 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dU4-yR-axo" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1826" y="-52"/>
+            <point key="canvasLocation" x="2734.7826086956525" y="-52.232142857142854"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="tgD-ac-Csg">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4fa-Ec-z1Y" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="TJa-tp-70L" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="A0d-rf-EYr">
+                        <rect key="frame" x="0.0" y="44" width="414" height="96"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.21176470589999999" green="0.2274509804" blue="0.2470588235" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="A7N-9x-shP" kind="relationship" relationship="rootViewController" id="QQu-E9-VDt"/>
+                    </connections>
+                </navigationController>
+            </objects>
+            <point key="canvasLocation" x="969.56521739130437" y="-52.232142857142854"/>
         </scene>
     </scenes>
     <resources>

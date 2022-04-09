@@ -27,20 +27,8 @@ class AuthorInfoViewController: UIViewController {
                 print(error)
             }
         }
-        authorNameLabel.text = image.author ?? "No author"
+        authorNameLabel.text = "Photo by \(image.author ?? "No author")"
         }
-        
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 

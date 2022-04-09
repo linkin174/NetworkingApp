@@ -28,11 +28,3 @@ class RandomImageViewController: UIViewController {
         }
     }
 }
-//
-//extension UIViewController {
-//    func showAlert(with error: Error?) {
-//        let alert = UIAlertController(title: error, message: error as? CustomStringConvertible as! String, preferredStyle: .alert)
-//        alert.addAction(UIAlertAction(title: "OK", style: .cancel))
-//        present(alert, animated: true)
-//    }
-//}
