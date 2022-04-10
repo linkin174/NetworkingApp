@@ -5,30 +5,24 @@
 //  Created by Aleksandr Kretov on 08.04.2022.
 //
 import Foundation
-import UIKit
 
 class NetworkManager {
     
     enum Links: String {
-        case randomImage = "https://picsum.photos/1300/2800"
-        case randomImagesList = "https://picsum.photos/v2/list"
+        case randomImage = "https://picsum.phots/1300/2800"
+        case randomImagesList = "https://picsum.phots/v2/list"
     }
-    
-    enum Result<Success, Error: Swift.Error> {
-        case success(Success)
-        case failure(Error)
-    }
-    
+
     static let shared = NetworkManager()
     
-    func fetchImage(from url: String, completion: @escaping (Result<UIImage, Error>) -> Void) {
+    func fetchImage(from url: String, completion: @escaping (Result<Data, Error>) -> Void) {
         guard let url = URL(string: url) else { return }
         URLSession.shared.dataTask(with: url) { data, _, error in
-            guard let data = data, let image = UIImage(data: data) else {
-                completion(.failure(error!))
-                return
+            if data != nil {
+                completion(.success(data!))
+            } else if let error = error {
+                completion(.failure(error))
             }
-            completion(.success(image))
         }.resume()
     }
     
@@ -38,7 +32,9 @@ class NetworkManager {
             guard
                 let data = data,
                 let images = try? JSONDecoder().decode([Image].self, from: data) else {
-                completion(.failure(error!))
+                if let error = error {
+                    completion(.failure(error))
+                }
                 return
             }
             completion(.success(images))

@@ -15,7 +15,7 @@ class CustomCell: UICollectionViewCell {
             switch result {
             case .success(let image):
                 DispatchQueue.main.async {
-                    self.imageView.image = image
+                    self.imageView.image = UIImage(data: image)
                 }
             case .failure(let error):
                 print(error)

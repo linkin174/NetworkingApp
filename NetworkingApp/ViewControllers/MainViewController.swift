@@ -20,7 +20,7 @@ class MainViewController: UIViewController {
     
     // MARK: - Private methods
     
-    private func showAlert(on segue: UIStoryboardSegue) {
+    private func showAlert() {
         let alert = UIAlertController(title: "Oops", message: "Something went wrong... :(", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: { _ in
             self.navigationController?.popToRootViewController(animated: true)
@@ -37,11 +37,11 @@ class MainViewController: UIViewController {
                 switch result {
                 case .success(let image):
                     DispatchQueue.main.async {
-                        targetVC.imageView.image = image
+                        targetVC.imageView.image = UIImage(data: image)
                         targetVC.activityIndicator.stopAnimating()
                     }
                 case .failure:
-                    self.showAlert(on: segue)
+                    self.showAlert()
                 }
             }
         } else {
@@ -54,7 +54,7 @@ class MainViewController: UIViewController {
                         galleryVC.activityIndicator.stopAnimating()
                     }
                 case .failure:
-                    self.showAlert(on: segue)
+                    self.showAlert()
                 }
             }
         }

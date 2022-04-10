@@ -26,7 +26,7 @@ class AuthorInfoViewController: UIViewController {
             switch result {
             case .success(let image):
                 DispatchQueue.main.async {
-                    self.imageView.image = image
+                    self.imageView.image = UIImage(data: image)
                     self.activityIndicator.stopAnimating()
                 }
             case .failure(let error):

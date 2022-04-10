@@ -6,6 +6,6 @@
 //
 
 struct Image: Decodable {
-    var author: String?
+    let author: String?
     let download_url : String?
 }
