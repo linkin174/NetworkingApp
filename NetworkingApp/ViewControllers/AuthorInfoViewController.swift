@@ -15,6 +15,7 @@ class AuthorInfoViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.imageView.layer.cornerRadius = 8
         NetworkManager.shared.fetchImage(from: image.download_url ?? "") { result in
             
             switch result {
@@ -28,7 +29,9 @@ class AuthorInfoViewController: UIViewController {
             }
         }
         authorNameLabel.text = "Photo by \(image.author ?? "No author")"
+        view.layoutIfNeeded()
         }
     }
+
 
 

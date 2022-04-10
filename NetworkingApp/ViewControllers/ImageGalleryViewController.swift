@@ -8,7 +8,11 @@
 import UIKit
 
 class ImageGalleryViewController: UICollectionViewController {
-    var viewImages: [Image] = []
+    var viewImages: [Image] = [] {
+        didSet {
+            collectionView.reloadData()
+        }
+    }
 
     @IBOutlet var activityIndicator: UIActivityIndicatorView!
 
@@ -16,19 +20,6 @@ class ImageGalleryViewController: UICollectionViewController {
         super.viewDidLoad()
         activityIndicator.startAnimating()
         activityIndicator.hidesWhenStopped = true
-        NetworkManager.shared.fetchImages(from: NetworkManager.Links.randomImagesList.rawValue) { result in
-            switch result {
-            case .success(let images):
-                DispatchQueue.main.async {
-                    self.viewImages = images
-                    self.collectionView.reloadData()
-                    self.activityIndicator.stopAnimating()
-                    
-                }
-            case .failure(let error):
-                print(error)
-            }
-        }
     }
 
     // MARK: - Navigation

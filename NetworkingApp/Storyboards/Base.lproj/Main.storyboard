@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="1J3-ib-di3">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
@@ -9,10 +9,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Home-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="NetworkingApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="MainViewController" customModule="NetworkingApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -24,7 +24,7 @@
                                     <fontDescription key="titleFontDescription" type="boldSystem" pointSize="24"/>
                                 </buttonConfiguration>
                                 <connections>
-                                    <segue destination="A7N-9x-shP" kind="presentation" identifier="toImageGalery" modalPresentationStyle="fullScreen" id="ZQ7-hH-8SN"/>
+                                    <action selector="showGalleryButtonPressed" destination="BYZ-38-t0r" eventType="touchUpInside" id="OoU-X0-m8N"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="W3d-eE-fBz">
@@ -36,12 +36,12 @@
                                     <color key="baseBackgroundColor" red="0.6025457058" green="0.36078431370000003" blue="0.90196078430000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </buttonConfiguration>
                                 <connections>
-                                    <segue destination="fq3-TR-azw" kind="presentation" identifier="toRandomImage" id="Omu-V1-PFt"/>
+                                    <action selector="showRandomImagePressed" destination="BYZ-38-t0r" eventType="touchUpInside" id="HwI-Hm-7HG"/>
                                 </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" systemColor="systemGray2Color"/>
                         <constraints>
                             <constraint firstItem="zjA-Gs-P6L" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="FKs-UB-QnK"/>
                             <constraint firstItem="W3d-eE-fBz" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Fay-0L-QfI"/>
@@ -50,10 +50,15 @@
                             <constraint firstItem="zjA-Gs-P6L" firstAttribute="top" secondItem="W3d-eE-fBz" secondAttribute="bottom" constant="48" id="Ykd-cf-0fW"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" title="Home" id="eBw-g4-ZOi"/>
+                    <connections>
+                        <segue destination="A7N-9x-shP" kind="show" identifier="toImageGallery" id="Qkr-3a-JSZ"/>
+                        <segue destination="fq3-TR-azw" kind="presentation" identifier="toRandomImage" id="heh-Vy-nJI"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="132" y="117"/>
+            <point key="canvasLocation" x="1042.0289855072465" y="116.51785714285714"/>
         </scene>
         <!--Random Photos-->
         <scene sceneID="vqT-HC-nHg">
@@ -62,15 +67,15 @@
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="lDL-Rm-fKm">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" systemColor="systemGray2Color"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="QWA-mM-wXN">
                             <size key="itemSize" width="160" height="160"/>
                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
                             <inset key="sectionInset" minX="10" minY="10" maxX="10" maxY="10"/>
                         </collectionViewFlowLayout>
-                        <activityIndicatorView key="backgroundView" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" id="lYU-wJ-iH8">
-                            <rect key="frame" x="0.0" y="-44" width="414" height="896"/>
+                        <activityIndicatorView key="backgroundView" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="large" id="lYU-wJ-iH8">
+                            <rect key="frame" x="0.0" y="-88" width="414" height="896"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         </activityIndicatorView>
                         <cells>
@@ -99,7 +104,7 @@
                                 </collectionViewCellContentView>
                                 <connections>
                                     <outlet property="imageView" destination="IXL-D1-RIi" id="5Ck-bW-XeP"/>
-                                    <segue destination="bha-cc-mY3" kind="presentation" identifier="authorInfo" id="71K-Ih-aYg"/>
+                                    <segue destination="bha-cc-mY3" kind="show" identifier="authorInfo" id="71K-Ih-aYg"/>
                                 </connections>
                             </collectionViewCell>
                         </cells>
@@ -115,7 +120,7 @@
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LiR-CO-3bZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="970" y="544"/>
+            <point key="canvasLocation" x="1879.7101449275365" y="543.75"/>
         </scene>
         <!--Random Image View Controller-->
         <scene sceneID="s3d-mT-SLK">
@@ -126,7 +131,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Jor-yp-Wy1">
-                                <rect key="frame" x="0.0" y="44" width="414" height="798"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                             </imageView>
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="nmL-BP-Ro7">
                                 <rect key="frame" x="188.5" y="402.5" width="37" height="37"/>
@@ -140,10 +145,11 @@
                             <constraint firstItem="nmL-BP-Ro7" firstAttribute="centerX" secondItem="khC-RN-Nlo" secondAttribute="centerX" id="N1C-jD-UeA"/>
                             <constraint firstAttribute="bottom" secondItem="Jor-yp-Wy1" secondAttribute="bottom" id="Xlk-I7-4XJ"/>
                             <constraint firstItem="nmL-BP-Ro7" firstAttribute="centerY" secondItem="khC-RN-Nlo" secondAttribute="centerY" id="lOK-0I-iDY"/>
-                            <constraint firstItem="Jor-yp-Wy1" firstAttribute="top" secondItem="suC-Qw-0ye" secondAttribute="top" id="pCl-LU-0BR"/>
+                            <constraint firstItem="Jor-yp-Wy1" firstAttribute="top" secondItem="khC-RN-Nlo" secondAttribute="top" id="pCl-LU-0BR"/>
                             <constraint firstItem="suC-Qw-0ye" firstAttribute="trailing" secondItem="Jor-yp-Wy1" secondAttribute="trailing" id="puh-mF-Oyl"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="EPo-wW-MZK"/>
                     <connections>
                         <outlet property="activityIndicator" destination="nmL-BP-Ro7" id="lZl-kq-wrh"/>
                         <outlet property="imageView" destination="Jor-yp-Wy1" id="c8M-ib-bgQ"/>
@@ -151,28 +157,28 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LIN-aJ-zP7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="970" y="-141"/>
+            <point key="canvasLocation" x="1879.7101449275365" y="-141.29464285714286"/>
         </scene>
         <!--Author Info View Controller-->
         <scene sceneID="df1-q9-VPT">
             <objects>
                 <viewController id="bha-cc-mY3" customClass="AuthorInfoViewController" customModule="NetworkingApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="1oI-ZN-Ywo">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="nFS-ux-7b6">
-                                <rect key="frame" x="16" y="60" width="382" height="661"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nFS-ux-7b6">
+                                <rect key="frame" x="16" y="104" width="382" height="637"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y9S-t5-FeM">
-                                <rect key="frame" x="16" y="753" width="382" height="29"/>
+                                <rect key="frame" x="16" y="773" width="382" height="29"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="X7I-jS-fbV"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" systemColor="systemGray2Color"/>
                         <constraints>
                             <constraint firstItem="nFS-ux-7b6" firstAttribute="leading" secondItem="X7I-jS-fbV" secondAttribute="leading" constant="16" id="HD3-Md-3Ey"/>
                             <constraint firstItem="X7I-jS-fbV" firstAttribute="trailing" secondItem="y9S-t5-FeM" secondAttribute="trailing" constant="16" id="Kd3-85-I4r"/>
@@ -183,6 +189,7 @@
                             <constraint firstItem="nFS-ux-7b6" firstAttribute="top" secondItem="1oI-ZN-Ywo" secondAttribute="topMargin" constant="16" id="ljI-2O-Gf5"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="gq4-BQ-tGz"/>
                     <connections>
                         <outlet property="authorNameLabel" destination="y9S-t5-FeM" id="Lu2-6q-RrC"/>
                         <outlet property="imageView" destination="nFS-ux-7b6" id="mgd-nC-u3p"/>
@@ -190,12 +197,34 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dU4-yR-axo" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1790" y="544"/>
+            <point key="canvasLocation" x="2700" y="543.75"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="WyF-mq-xrs">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="1J3-ib-di3" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Z3t-0C-XBI">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="0es-lA-bhL"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="A6q-uR-S6w" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="131.8840579710145" y="116.51785714285714"/>
         </scene>
     </scenes>
     <resources>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGray2Color">
+            <color red="0.68235294117647061" green="0.68235294117647061" blue="0.69803921568627447" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="tintColor">
             <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

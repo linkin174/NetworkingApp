@@ -7,9 +7,6 @@
 import Foundation
 import UIKit
 class NetworkManager {
-    enum NetworkError: Error {
-        case badURL
-    }
     
     enum Links: String {
         case randomImage = "https://picsum.photos/1300/2800"
@@ -37,17 +34,13 @@ class NetworkManager {
     func fetchImages(from url: String, completion: @escaping (Result<[Image], Error>) -> Void) {
         guard let url = URL(string: url) else { return }
         URLSession.shared.dataTask(with: url) { data, _, error in
-            guard let data = data else {
+            guard
+                let data = data,
+                let images = try? JSONDecoder().decode([Image].self, from: data) else {
                 completion(.failure(error!))
                 return
             }
-            do {
-                guard let images = try? JSONDecoder().decode([Image].self, from: data) else {
-                    completion(.failure(error!))
-                    return
-                }
-                completion(.success(images))
-            }
+            completion(.success(images))
         }.resume()
     }
 
