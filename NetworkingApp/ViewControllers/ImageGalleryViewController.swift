@@ -23,11 +23,9 @@ class ImageGalleryViewController: UICollectionViewController {
     // MARK: - Navigation
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "authorInfo" {
             guard let cell = sender as? CustomCell, let indexPath = collectionView.indexPath(for: cell) else { return }
             guard let aboutVC = segue.destination as? AuthorInfoViewController else { return }
             aboutVC.image = viewImages[indexPath.item]
-        }
     }
 
     // MARK: UICollectionViewDataSource
