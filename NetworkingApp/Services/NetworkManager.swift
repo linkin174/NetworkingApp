@@ -9,8 +9,8 @@ import UIKit
 
 class NetworkManager {
     enum Links: String {
-        case randomImage = "https://picsum.phots/1300/2800/"
-        case randomImagesList = "https://picsum.phots/v2/list"
+        case randomImage = "https://picsum.photos/1300/2800/"
+        case randomImagesList = "https://picsum.photos/v2/list"
     }
 
     static let shared = NetworkManager()
@@ -37,8 +37,7 @@ class NetworkManager {
                   let images = try? JSONDecoder().decode([Image].self, from: data)
             else {
                 if let error = error {
-                    completion(.failure(error))
-                }
+                    completion(.failure(error))}
                 return
             }
             completion(.success(images))

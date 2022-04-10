@@ -19,6 +19,21 @@ class ImageGalleryViewController: UICollectionViewController {
             collectionView.reloadData()
         }
     }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        NetworkManager.shared.fetchImages(from: NetworkManager.Links.randomImagesList.rawValue) { result in
+            switch result {
+            case .success(let images):
+                DispatchQueue.main.async {
+                    self.viewImages = images
+                    self.activityIndicator.stopAnimating()
+                }
+            case .failure:
+                self.showAlert()
+            }
+        }
+    }
 
     // MARK: - Navigation
 

@@ -9,7 +9,7 @@ import UIKit
 
 class CustomCell: UICollectionViewCell {
     @IBOutlet var imageView: UIImageView!
-
+    
     func configureCell(with image: Image) {
         NetworkManager.shared.fetchImage(from: image.download_url ?? "") { result in
             switch result {
