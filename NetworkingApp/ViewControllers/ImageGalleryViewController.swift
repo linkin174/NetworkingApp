@@ -8,25 +8,23 @@
 import UIKit
 
 class ImageGalleryViewController: UICollectionViewController {
+    // MARK: - IBOutlets
+
+    @IBOutlet var activityIndicator: UIActivityIndicatorView!
+
+    // MARK: - Public Properties
+
     var viewImages: [Image] = [] {
         didSet {
             collectionView.reloadData()
         }
     }
 
-    @IBOutlet var activityIndicator: UIActivityIndicatorView!
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        activityIndicator.startAnimating()
-        activityIndicator.hidesWhenStopped = true
-    }
-
     // MARK: - Navigation
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "authorInfo" {
-            guard let cell = sender as? CustomCell, let indexPath = self.collectionView.indexPath(for: cell) else { return }
+            guard let cell = sender as? CustomCell, let indexPath = collectionView.indexPath(for: cell) else { return }
             guard let aboutVC = segue.destination as? AuthorInfoViewController else { return }
             aboutVC.image = viewImages[indexPath.item]
         }
@@ -49,6 +47,8 @@ class ImageGalleryViewController: UICollectionViewController {
         return cell
     }
 }
+
+// MARK: - Extensions
 
 extension ImageGalleryViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {

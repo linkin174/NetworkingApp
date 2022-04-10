@@ -13,7 +13,6 @@ class CustomCell: UICollectionViewCell {
     func configureCell(with image: Image) {
         NetworkManager.shared.fetchImage(from: image.download_url ?? "") { result in
             switch result {
-                
             case .success(let image):
                 DispatchQueue.main.async {
                     self.imageView.image = image

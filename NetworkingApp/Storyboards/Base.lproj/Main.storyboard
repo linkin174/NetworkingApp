@@ -17,37 +17,42 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zjA-Gs-P6L">
-                                <rect key="frame" x="77.5" y="426.5" width="259" height="43"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="filled" title="Show gallery">
-                                    <fontDescription key="titleFontDescription" type="boldSystem" pointSize="24"/>
-                                </buttonConfiguration>
-                                <connections>
-                                    <action selector="showGalleryButtonPressed" destination="BYZ-38-t0r" eventType="touchUpInside" id="OoU-X0-m8N"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="W3d-eE-fBz">
-                                <rect key="frame" x="77.5" y="335.5" width="259" height="43"/>
-                                <color key="tintColor" systemColor="tintColor"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="filled" title="Show Random Image">
-                                    <fontDescription key="titleFontDescription" type="boldSystem" pointSize="24"/>
-                                    <color key="baseBackgroundColor" red="0.6025457058" green="0.36078431370000003" blue="0.90196078430000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </buttonConfiguration>
-                                <connections>
-                                    <action selector="showRandomImagePressed" destination="BYZ-38-t0r" eventType="touchUpInside" id="HwI-Hm-7HG"/>
-                                </connections>
-                            </button>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="48" translatesAutoresizingMaskIntoConstraints="NO" id="blM-ka-j6c">
+                                <rect key="frame" x="77.5" y="381" width="259" height="134"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="W3d-eE-fBz">
+                                        <rect key="frame" x="0.0" y="0.0" width="259" height="43"/>
+                                        <color key="tintColor" systemColor="tintColor"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="filled" title="Show Random Image">
+                                            <fontDescription key="titleFontDescription" type="boldSystem" pointSize="24"/>
+                                            <color key="baseBackgroundColor" red="0.6025457058" green="0.36078431370000003" blue="0.90196078430000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </buttonConfiguration>
+                                        <connections>
+                                            <action selector="showRandomImagePressed" destination="BYZ-38-t0r" eventType="touchUpInside" id="HwI-Hm-7HG"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zjA-Gs-P6L">
+                                        <rect key="frame" x="0.0" y="91" width="259" height="43"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="filled" title="Show gallery">
+                                            <fontDescription key="titleFontDescription" type="boldSystem" pointSize="24"/>
+                                        </buttonConfiguration>
+                                        <connections>
+                                            <action selector="showGalleryButtonPressed" destination="BYZ-38-t0r" eventType="touchUpInside" id="OoU-X0-m8N"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="zjA-Gs-P6L" firstAttribute="width" secondItem="W3d-eE-fBz" secondAttribute="width" id="jAa-Uf-q1b"/>
+                                </constraints>
+                            </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemGray2Color"/>
                         <constraints>
-                            <constraint firstItem="zjA-Gs-P6L" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="FKs-UB-QnK"/>
-                            <constraint firstItem="W3d-eE-fBz" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Fay-0L-QfI"/>
-                            <constraint firstItem="zjA-Gs-P6L" firstAttribute="width" secondItem="W3d-eE-fBz" secondAttribute="width" id="ULd-jZ-vVa"/>
-                            <constraint firstItem="zjA-Gs-P6L" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="UjK-Mi-obR"/>
-                            <constraint firstItem="zjA-Gs-P6L" firstAttribute="top" secondItem="W3d-eE-fBz" secondAttribute="bottom" constant="48" id="Ykd-cf-0fW"/>
+                            <constraint firstItem="blM-ka-j6c" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="UHO-Rh-1aN"/>
+                            <constraint firstItem="blM-ka-j6c" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="rbg-q5-ApP"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Home" id="eBw-g4-ZOi"/>
@@ -77,6 +82,7 @@
                         <activityIndicatorView key="backgroundView" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="large" id="lYU-wJ-iH8">
                             <rect key="frame" x="0.0" y="-88" width="414" height="896"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <color key="color" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </activityIndicatorView>
                         <cells>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="image" id="SMZ-v9-Qk0" customClass="CustomCell" customModule="NetworkingApp" customModuleProvider="target">
@@ -170,19 +176,26 @@
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nFS-ux-7b6">
                                 <rect key="frame" x="16" y="104" width="382" height="637"/>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y9S-t5-FeM">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y9S-t5-FeM">
                                 <rect key="frame" x="16" y="773" width="382" height="29"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
+                                <size key="shadowOffset" width="0.0" height="0.0"/>
                             </label>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="Nx8-zA-YpT">
+                                <rect key="frame" x="188.5" y="429.5" width="37" height="37"/>
+                                <color key="color" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </activityIndicatorView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="X7I-jS-fbV"/>
                         <color key="backgroundColor" systemColor="systemGray2Color"/>
                         <constraints>
                             <constraint firstItem="nFS-ux-7b6" firstAttribute="leading" secondItem="X7I-jS-fbV" secondAttribute="leading" constant="16" id="HD3-Md-3Ey"/>
                             <constraint firstItem="X7I-jS-fbV" firstAttribute="trailing" secondItem="y9S-t5-FeM" secondAttribute="trailing" constant="16" id="Kd3-85-I4r"/>
+                            <constraint firstItem="Nx8-zA-YpT" firstAttribute="centerY" secondItem="1oI-ZN-Ywo" secondAttribute="centerY" id="Kl3-fJ-Y4O"/>
                             <constraint firstItem="X7I-jS-fbV" firstAttribute="bottom" secondItem="y9S-t5-FeM" secondAttribute="bottom" constant="60" id="LfS-tv-Agr"/>
+                            <constraint firstItem="Nx8-zA-YpT" firstAttribute="centerX" secondItem="1oI-ZN-Ywo" secondAttribute="centerX" id="ZBe-sw-GQb"/>
                             <constraint firstItem="y9S-t5-FeM" firstAttribute="leading" secondItem="X7I-jS-fbV" secondAttribute="leading" constant="16" id="aZk-aF-f80"/>
                             <constraint firstItem="y9S-t5-FeM" firstAttribute="top" secondItem="nFS-ux-7b6" secondAttribute="bottom" constant="32" id="gek-Sd-j9j"/>
                             <constraint firstItem="X7I-jS-fbV" firstAttribute="trailing" secondItem="nFS-ux-7b6" secondAttribute="trailing" constant="16" id="hOh-9I-Ncm"/>
@@ -191,6 +204,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="gq4-BQ-tGz"/>
                     <connections>
+                        <outlet property="activityIndicator" destination="Nx8-zA-YpT" id="jon-Nd-LfY"/>
                         <outlet property="authorNameLabel" destination="y9S-t5-FeM" id="Lu2-6q-RrC"/>
                         <outlet property="imageView" destination="nFS-ux-7b6" id="mgd-nC-u3p"/>
                     </connections>
