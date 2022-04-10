@@ -10,6 +10,4 @@ import UIKit
 class RandomImageViewController: UIViewController {
     @IBOutlet var activityIndicator: UIActivityIndicatorView!
     @IBOutlet var imageView: UIImageView!
-
-    var image: UIImage!
 }
