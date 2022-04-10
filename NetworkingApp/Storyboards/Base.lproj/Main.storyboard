@@ -110,7 +110,6 @@
                                 </collectionViewCellContentView>
                                 <connections>
                                     <outlet property="imageView" destination="IXL-D1-RIi" id="5Ck-bW-XeP"/>
-                                    <segue destination="bha-cc-mY3" kind="show" identifier="" id="71K-Ih-aYg"/>
                                 </connections>
                             </collectionViewCell>
                         </cells>
@@ -122,6 +121,7 @@
                     <navigationItem key="navigationItem" title="Random Photos" id="kMN-ed-cyj"/>
                     <connections>
                         <outlet property="activityIndicator" destination="lYU-wJ-iH8" id="7MU-Gh-tn8"/>
+                        <segue destination="bha-cc-mY3" kind="show" identifier="toAuthor" id="6hi-23-Xpl"/>
                     </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LiR-CO-3bZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

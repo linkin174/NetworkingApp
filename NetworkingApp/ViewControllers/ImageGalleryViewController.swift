@@ -23,9 +23,12 @@ class ImageGalleryViewController: UICollectionViewController {
     // MARK: - Navigation
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-            guard let cell = sender as? CustomCell, let indexPath = collectionView.indexPath(for: cell) else { return }
+        guard let authorVC = segue.destination as? AuthorInfoViewController else { return }
+        authorVC.image = sender as? Image
+/*            guard let cell = sender as? CustomCell, let indexPath = collectionView.indexPath(for: cell) else { return }
             guard let aboutVC = segue.destination as? AuthorInfoViewController else { return }
             aboutVC.image = viewImages[indexPath.item]
+*/
     }
 
     // MARK: UICollectionViewDataSource
@@ -52,6 +55,11 @@ extension ImageGalleryViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let cellSideSize = UIScreen.main.bounds.width / 2 - 20
         return CGSize(width: cellSideSize, height: cellSideSize)
+    }
+    
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let image = viewImages[indexPath.item]
+        performSegue(withIdentifier: "toAuthor", sender: image)
     }
 }
 
