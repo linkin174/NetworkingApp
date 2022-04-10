@@ -110,7 +110,7 @@
                                 </collectionViewCellContentView>
                                 <connections>
                                     <outlet property="imageView" destination="IXL-D1-RIi" id="5Ck-bW-XeP"/>
-                                    <segue destination="bha-cc-mY3" kind="show" identifier="authorInfo" id="71K-Ih-aYg"/>
+                                    <segue destination="bha-cc-mY3" kind="show" identifier="" id="71K-Ih-aYg"/>
                                 </connections>
                             </collectionViewCell>
                         </cells>

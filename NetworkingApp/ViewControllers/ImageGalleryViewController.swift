@@ -55,10 +55,3 @@ extension ImageGalleryViewController: UICollectionViewDelegateFlowLayout {
     }
 }
 
-extension ImageGalleryViewController {
-    private func showAlert(with message: String) {
-        let alert = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Close", style: .cancel))
-        present(alert, animated: true)
-    }
-}
