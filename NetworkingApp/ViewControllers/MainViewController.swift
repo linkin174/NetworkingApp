@@ -8,7 +8,7 @@
 import UIKit
 
 class MainViewController: UIViewController {
-    // MARK: - IBOutlets
+    // MARK: - IBActions
 
     @IBAction func showRandomImagePressed() {
         performSegue(withIdentifier: "toRandomImage", sender: nil)
