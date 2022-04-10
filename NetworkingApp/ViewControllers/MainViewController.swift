@@ -36,12 +36,15 @@ class MainViewController: UIViewController {
             NetworkManager.shared.fetchImage(from: NetworkManager.Links.randomImage.rawValue) { result in
                 switch result {
                 case .success(let image):
+                    debugPrint(image)
                     DispatchQueue.main.async {
                         targetVC.imageView.image = UIImage(data: image)
                         targetVC.activityIndicator.stopAnimating()
                     }
-                case .failure:
+                case .failure(let error):
                     self.showAlert()
+                    print(error.localizedDescription)
+                    
                 }
             }
         } else {
