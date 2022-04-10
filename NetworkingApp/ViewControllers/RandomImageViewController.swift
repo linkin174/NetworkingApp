@@ -10,6 +10,12 @@ import UIKit
 class RandomImageViewController: UIViewController {
     @IBOutlet var activityIndicator: UIActivityIndicatorView!
     @IBOutlet var imageView: UIImageView!
+    @IBAction func shareButtonPressed(_ sender: Any) {
+        guard let image = imageView.image else { return }
+        let shareVC = UIActivityViewController(activityItems: [image], applicationActivities: nil)
+        shareVC.popoverPresentationController?.sourceView = self.view
+        present(shareVC, animated: true)
+    }
     
     override func viewDidLoad() {
         NetworkManager.shared.fetchImage(from: NetworkManager.Links.randomImage.rawValue) { result in

@@ -14,6 +14,12 @@ class AuthorInfoViewController: UIViewController {
     @IBOutlet var imageView: UIImageView!
     @IBOutlet var activityIndicator: UIActivityIndicatorView!
     
+    @IBAction func shareButtonPressed(_ sender: Any) {
+        guard let image = imageView.image else { return }
+        let shareVC = UIActivityViewController(activityItems: [image], applicationActivities: nil)
+        shareVC.popoverPresentationController?.sourceView = self.view
+        present(shareVC, animated: true)
+    }
     // MARK: - Public properties
 
     var image: Image!
