@@ -138,13 +138,28 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Jor-yp-Wy1">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Jor-yp-Wy1">
                                 <rect key="frame" x="0.0" y="88" width="414" height="808"/>
                             </imageView>
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="nmL-BP-Ro7">
                                 <rect key="frame" x="188.5" y="429.5" width="37" height="37"/>
                                 <color key="color" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </activityIndicatorView>
+                            <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" reversesTitleShadowWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dY5-7p-0hc">
+                                <rect key="frame" x="169.5" y="767.5" width="75" height="74.5"/>
+                                <color key="backgroundColor" systemColor="systemTealColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="dY5-7p-0hc" secondAttribute="height" multiplier="1:1" id="9YN-sc-bNh"/>
+                                </constraints>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal">
+                                    <imageReference key="image" image="repeat.1" catalog="system" symbolScale="large"/>
+                                </state>
+                                <connections>
+                                    <action selector="repeatButtonPressed" destination="fq3-TR-azw" eventType="touchUpInside" id="tyB-jh-K1c"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="suC-Qw-0ye"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -152,9 +167,12 @@
                             <constraint firstItem="Jor-yp-Wy1" firstAttribute="leading" secondItem="suC-Qw-0ye" secondAttribute="leading" id="LFK-uM-D8C"/>
                             <constraint firstItem="nmL-BP-Ro7" firstAttribute="centerX" secondItem="khC-RN-Nlo" secondAttribute="centerX" id="N1C-jD-UeA"/>
                             <constraint firstAttribute="bottom" secondItem="Jor-yp-Wy1" secondAttribute="bottom" id="Xlk-I7-4XJ"/>
+                            <constraint firstItem="suC-Qw-0ye" firstAttribute="bottom" secondItem="dY5-7p-0hc" secondAttribute="bottom" constant="20" id="bm0-0s-F3X"/>
+                            <constraint firstItem="dY5-7p-0hc" firstAttribute="width" secondItem="Jor-yp-Wy1" secondAttribute="width" multiplier="0.18" id="iYA-iq-e0Q"/>
                             <constraint firstItem="nmL-BP-Ro7" firstAttribute="centerY" secondItem="khC-RN-Nlo" secondAttribute="centerY" id="lOK-0I-iDY"/>
                             <constraint firstItem="Jor-yp-Wy1" firstAttribute="top" secondItem="suC-Qw-0ye" secondAttribute="top" id="pCl-LU-0BR"/>
                             <constraint firstItem="suC-Qw-0ye" firstAttribute="trailing" secondItem="Jor-yp-Wy1" secondAttribute="trailing" id="puh-mF-Oyl"/>
+                            <constraint firstItem="dY5-7p-0hc" firstAttribute="centerX" secondItem="khC-RN-Nlo" secondAttribute="centerX" id="src-W7-Avx"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="EPo-wW-MZK">
@@ -174,6 +192,7 @@
                     <connections>
                         <outlet property="activityIndicator" destination="nmL-BP-Ro7" id="lZl-kq-wrh"/>
                         <outlet property="imageView" destination="Jor-yp-Wy1" id="c8M-ib-bgQ"/>
+                        <outlet property="repeatButton" destination="dY5-7p-0hc" id="awv-Sz-GxV"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LIN-aJ-zP7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -259,6 +278,7 @@
     </scenes>
     <resources>
         <image name="dummy" width="800" height="800"/>
+        <image name="repeat.1" catalog="system" width="128" height="101"/>
         <image name="square.and.arrow.up" catalog="system" width="115" height="128"/>
         <namedColor name="NavBarBG">
             <color red="0.75800001621246338" green="0.75800001621246338" blue="0.75800001621246338" alpha="0.30000001192092896" colorSpace="custom" customColorSpace="sRGB"/>
@@ -274,6 +294,9 @@
         </systemColor>
         <systemColor name="systemGray2Color">
             <color red="0.68235294117647061" green="0.68235294117647061" blue="0.69803921568627447" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemTealColor">
+            <color red="0.18823529411764706" green="0.69019607843137254" blue="0.7803921568627451" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="tertiaryLabelColor">
             <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="sRGB"/>

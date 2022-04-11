@@ -10,6 +10,12 @@ import UIKit
 class RandomImageViewController: UIViewController {
     @IBOutlet var activityIndicator: UIActivityIndicatorView!
     @IBOutlet var imageView: UIImageView!
+    @IBOutlet var repeatButton: UIButton!
+    @IBAction func repeatButtonPressed() {
+        getImage()
+    }
+    
+    
     @IBAction func shareButtonPressed(_ sender: Any) {
         guard let image = imageView.image else { return }
         let shareVC = UIActivityViewController(activityItems: [image], applicationActivities: nil)
@@ -18,6 +24,12 @@ class RandomImageViewController: UIViewController {
     }
     
     override func viewDidLoad() {
+        repeatButton.layer.cornerRadius = repeatButton.frame.height / 2
+        getImage()
+    }
+    
+    private func getImage() {
+        activityIndicator.startAnimating()
         NetworkManager.shared.fetchImage(from: NetworkManager.Links.randomImage.rawValue) { result in
             switch result {
             case .success(let image):
