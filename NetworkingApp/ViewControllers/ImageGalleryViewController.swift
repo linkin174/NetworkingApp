@@ -19,20 +19,10 @@ class ImageGalleryViewController: UICollectionViewController {
             collectionView.reloadData()
         }
     }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        NetworkManager.shared.fetchImages(from: NetworkManager.Links.randomImagesList.rawValue) { result in
-            switch result {
-            case .success(let images):
-                DispatchQueue.main.async {
-                    self.viewImages = images
-                    self.activityIndicator.stopAnimating()
-                }
-            case .failure:
-                self.showAlert()
-            }
-        }
+        updateImages()
     }
 
     // MARK: - Navigation
@@ -40,10 +30,6 @@ class ImageGalleryViewController: UICollectionViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let authorVC = segue.destination as? AuthorInfoViewController else { return }
         authorVC.image = sender as? Image
-/*            guard let cell = sender as? CustomCell, let indexPath = collectionView.indexPath(for: cell) else { return }
-            guard let aboutVC = segue.destination as? AuthorInfoViewController else { return }
-            aboutVC.image = viewImages[indexPath.item]
-*/
     }
 
     // MARK: UICollectionViewDataSource
@@ -62,7 +48,20 @@ class ImageGalleryViewController: UICollectionViewController {
         cell.configureCell(with: image)
         return cell
     }
+    
+    private func updateImages() {
+        guard let url = URL(string: NetworkManager.Links.randomImagesList.rawValue) else { return }
+        NetworkManager.shared.fetchImagesAF(from: url) { result in
+            switch result {
+            case .success(let imagesData):
+                self.viewImages = imagesData
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
+    }
 }
+
 
 // MARK: - Extensions
 
@@ -71,10 +70,9 @@ extension ImageGalleryViewController: UICollectionViewDelegateFlowLayout {
         let cellSideSize = UIScreen.main.bounds.width / 2 - 20
         return CGSize(width: cellSideSize, height: cellSideSize)
     }
-    
+
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let image = viewImages[indexPath.item]
         performSegue(withIdentifier: "toAuthor", sender: image)
     }
 }
-

@@ -24,21 +24,46 @@ class AuthorInfoViewController: UIViewController {
 
     var image: Image!
 
+
     // MARK: - Override methods
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        NetworkManager.shared.fetchImage(from: image.download_url ?? "") { result in
+        getImage()
+        authorNameLabel.text = "Photo by \(image.author ?? "Unknown")"
+    }
+    
+    private func getImage() {
+        guard let imageURL = URL(string: image.downloadUrl ?? "") else { return }
+        if let cacheImage = ImageCache.shared.object(forKey: imageURL.path as NSString) {
+            imageView.image = cacheImage
+            activityIndicator.stopAnimating()
+            return 
+        }
+        NetworkManager.shared.fetchImageAF(from: imageURL) { result in
             switch result {
-            case .success(let image):
-                DispatchQueue.main.async {
-                    self.imageView.image = UIImage(data: image)
-                    self.activityIndicator.stopAnimating()
-                }
+                
+            case .success(let imageData):
+                self.imageView.image = UIImage(data: imageData)
             case .failure(let error):
-                print(error)
+                print(error.localizedDescription)
             }
         }
-        authorNameLabel.text = "Photo by \(image.author ?? "Unknown")"
+        
+        
+//        NetworkManager.shared.fetchImageAF(from: image.downloadUrl) { result in
+//            switch result {
+//            case .success(let imageData):
+//                guard let image = UIImage(data: imageData) else { return }
+//                ImageCache.shared.setObject(image, forKey: imageURL.path as NSString)
+//                print("Image from network: ", imageURL.path)
+//                self.imageView.image = image
+//                self.activityIndicator.stopAnimating()
+//            case .failure(let error):
+//                print(error)
+//            }
+//        }
+//
+       
     }
 }

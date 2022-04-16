@@ -25,22 +25,28 @@ class RandomImageViewController: UIViewController {
     
     override func viewDidLoad() {
         repeatButton.layer.cornerRadius = repeatButton.frame.height / 2
+        activityIndicator.color = .systemBackground
         getImage()
     }
     
     private func getImage() {
+        repeatButton.isHidden = true
         activityIndicator.startAnimating()
-        NetworkManager.shared.fetchImage(from: NetworkManager.Links.randomImage.rawValue) { result in
+        guard let imageURL = URL(string: NetworkManager.Links.randomImage.rawValue) else { return }
+        NetworkManager.shared.fetchImageAF(from: imageURL ) { result in
             switch result {
             case .success(let image):
-                DispatchQueue.main.async {
                     self.imageView.image = UIImage(data: image)
                     self.activityIndicator.stopAnimating()
-                }
+                    self.repeatButton.isHidden = false
             case .failure(_):
                 self.showAlert()
             }
         }
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        repeatButton.isHidden.toggle()
     }
 }
 

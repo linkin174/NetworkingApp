@@ -4,43 +4,47 @@
 //
 //  Created by Aleksandr Kretov on 08.04.2022.
 //
+import Alamofire
 import Foundation
-import UIKit
 
 class NetworkManager {
     enum Links: String {
         case randomImage = "https://picsum.photos/1300/2800/"
-        case randomImagesList = "https://picsum.photos/v2/list"
+        case randomImagesList = "https://picsum.photos/v2/list?page=1&limit=100"
     }
 
     static let shared = NetworkManager()
 
     private init() {}
 
-    func fetchImage(from url: String, completion: @escaping (Result<Data, Error>) -> Void) {
-        guard let url = URL(string: url) else { return }
-        URLSession.shared.dataTask(with: url) { data, _, error in
-            guard let data = data else {
-                if let error = error {
-                    completion(.failure(error))
+    func fetchImageAF(from url: URL, completion: @escaping (Result<Data, AFError>) -> Void) {
+        AF.request(url)
+            .validate()
+            .responseData { response in
+                switch response.result {
+                case .success(let data):
+                    completion(.success(data))
+                case .failure(let error):
+                    print(error.localizedDescription)
                 }
-                return
             }
-            completion(.success(data))
-        }.resume()
     }
 
-    func fetchImages(from url: String, completion: @escaping (Result<[Image], Error>) -> Void) {
-        guard let url = URL(string: url) else { return }
-        URLSession.shared.dataTask(with: url) { data, _, error in
-            guard let data = data,
-                  let images = try? JSONDecoder().decode([Image].self, from: data)
-            else {
-                if let error = error {
-                    completion(.failure(error))}
-                return
+    func fetchImagesAF(from url: URL, completion: @escaping (Result<[Image], AFError>) -> Void) {
+        AF.request(url)
+            .validate()
+            .responseData { response in
+                switch response.result {
+                case .success(let data):
+                    do {
+                        let images = try JSONDecoder().decode([Image].self, from: data)
+                        completion(.success(images))
+                    } catch {
+                        print(error.localizedDescription)
+                    }
+                case .failure(let error):
+                    completion(.failure(.createURLRequestFailed(error: error)))
+                }
             }
-            completion(.success(images))
-        }.resume()
     }
 }
