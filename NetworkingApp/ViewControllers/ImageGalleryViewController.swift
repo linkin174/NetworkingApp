@@ -7,7 +7,11 @@
 
 import UIKit
 
-class ImageGalleryViewController: UICollectionViewController {
+class ImageGalleryViewController: UICollectionViewController, PopUpDelegate {
+    func generate(URL: String) {
+        imageURLSettings = URL
+    }
+    
     // MARK: - IBOutlets
 
     @IBOutlet var activityIndicator: UIActivityIndicatorView!
@@ -20,6 +24,17 @@ class ImageGalleryViewController: UICollectionViewController {
         }
     }
 
+    @IBAction func settingsButtonPressed(_ sender: Any) {
+        PopupViewController.showPopup(parentVC: self)
+    }
+    
+    private var imageURLSettings = NetworkManager.Links.randomImagesList.rawValue {
+        didSet {
+            updateImages()
+            collectionView.reloadData()
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         updateImages()
@@ -50,7 +65,7 @@ class ImageGalleryViewController: UICollectionViewController {
     }
     
     private func updateImages() {
-        guard let url = URL(string: NetworkManager.Links.randomImagesList.rawValue) else { return }
+        guard let url = URL(string: imageURLSettings) else { return }
         NetworkManager.shared.fetchImagesAF(from: url) { result in
             switch result {
             case .success(let imagesData):

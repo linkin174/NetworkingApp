@@ -21,6 +21,7 @@
 		707074E12805E22C00736BAF /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 707074E02805E22C00736BAF /* Alamofire */; };
 		709FA0EC280168F600240C9B /* AuthorInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 709FA0EB280168F600240C9B /* AuthorInfoViewController.swift */; };
 		709FA0F028019C9B00240C9B /* RandomImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 709FA0EF28019C9B00240C9B /* RandomImageViewController.swift */; };
+		70E37CB2280AFF6E00427515 /* PopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70E37CB1280AFF6E00427515 /* PopupViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,6 +40,7 @@
 		70519C352800AEE700FA33B3 /* CustomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCell.swift; sourceTree = "<group>"; };
 		709FA0EB280168F600240C9B /* AuthorInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorInfoViewController.swift; sourceTree = "<group>"; };
 		709FA0EF28019C9B00240C9B /* RandomImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomImageViewController.swift; sourceTree = "<group>"; };
+		70E37CB1280AFF6E00427515 /* PopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,6 +102,7 @@
 				70519C352800AEE700FA33B3 /* CustomCell.swift */,
 				709FA0EB280168F600240C9B /* AuthorInfoViewController.swift */,
 				709FA0EF28019C9B00240C9B /* RandomImageViewController.swift */,
+				70E37CB1280AFF6E00427515 /* PopupViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -215,6 +218,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				70E37CB2280AFF6E00427515 /* PopupViewController.swift in Sources */,
 				703A0C112809274D00CF7076 /* ImageCache.swift in Sources */,
 				70519C2F28009B7A00FA33B3 /* NetworkManager.swift in Sources */,
 				70519C3228009D1C00FA33B3 /* Image.swift in Sources */,

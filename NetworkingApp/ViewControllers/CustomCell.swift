@@ -34,7 +34,6 @@ class CustomCell: UICollectionViewCell {
     private func getImage(from url: URL, completion: @escaping(Result<UIImage, Error>) -> Void) {
         // Get image from cache
         if let cacheImage = ImageCache.shared.object(forKey: url.path as NSString) {
-            print("Image from cache: ", url.lastPathComponent)
             completion(.success(cacheImage))
             return
         }
@@ -45,7 +44,6 @@ class CustomCell: UICollectionViewCell {
             case .success(let imageData):
                 guard let image = UIImage(data: imageData) else { return }
                 ImageCache.shared.setObject(image, forKey: url.path as NSString)
-                print("Image from network: ", url.lastPathComponent)
                 completion(.success(image))
             case .failure(let error):
                 completion(.failure(error))

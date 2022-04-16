@@ -10,7 +10,8 @@ import Foundation
 class NetworkManager {
     enum Links: String {
         case randomImage = "https://picsum.photos/1300/2800/"
-        case randomImagesList = "https://picsum.photos/v2/list?page=1&limit=100"
+        case randomImagesList = "https://picsum.photos/v2/list?page=1&limit=10"
+        case randomImageSetupList = "https://picsum.photos/v2/list?page="
     }
 
     static let shared = NetworkManager()
