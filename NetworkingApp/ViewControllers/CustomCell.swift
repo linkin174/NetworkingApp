@@ -9,6 +9,7 @@ import UIKit
 
 class CustomCell: UICollectionViewCell {
     @IBOutlet var imageView: UIImageView!
+    @IBOutlet var activityIndicator: UIActivityIndicatorView!
     
     private var imageURL: URL? {
         didSet {
@@ -18,12 +19,14 @@ class CustomCell: UICollectionViewCell {
     }
     
     private func updateImage() {
+        activityIndicator.startAnimating()
         guard let imageURL = imageURL else { return }
         getImage(from: imageURL) { result in
             switch result {
             case .success(let image):
                 if imageURL == self.imageURL {
                     self.imageView.image = image
+                    self.activityIndicator.stopAnimating()
                 }
             case .failure(let error):
                 print(error)
@@ -37,7 +40,6 @@ class CustomCell: UICollectionViewCell {
             completion(.success(cacheImage))
             return
         }
-        
         // Download image from url
         NetworkManager.shared.fetchImageAF(from: url) { result in
             switch result {
