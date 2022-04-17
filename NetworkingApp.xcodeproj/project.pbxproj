@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		703A0C112809274D00CF7076 /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 703A0C102809274D00CF7076 /* ImageCache.swift */; };
+		7042466A280BE2B2005F35E7 /* String+Subscript.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70424669280BE2B2005F35E7 /* String+Subscript.swift */; };
 		70519C132800217700FA33B3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70519C122800217700FA33B3 /* AppDelegate.swift */; };
 		70519C152800217700FA33B3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70519C142800217700FA33B3 /* SceneDelegate.swift */; };
 		70519C172800217700FA33B3 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70519C162800217700FA33B3 /* MainViewController.swift */; };
@@ -26,6 +27,7 @@
 
 /* Begin PBXFileReference section */
 		703A0C102809274D00CF7076 /* ImageCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCache.swift; sourceTree = "<group>"; };
+		70424669280BE2B2005F35E7 /* String+Subscript.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Subscript.swift"; sourceTree = "<group>"; };
 		70519C0F2800217700FA33B3 /* NetworkingApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NetworkingApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		70519C122800217700FA33B3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		70519C142800217700FA33B3 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -55,6 +57,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		70424668280BE27A005F35E7 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				70424669280BE2B2005F35E7 /* String+Subscript.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		70519C062800217700FA33B3 = {
 			isa = PBXGroup;
 			children = (
@@ -74,6 +84,7 @@
 		70519C112800217700FA33B3 /* NetworkingApp */ = {
 			isa = PBXGroup;
 			children = (
+				70424668280BE27A005F35E7 /* Extensions */,
 				70519C3028009D1300FA33B3 /* Models */,
 				70519C2D28009B6A00FA33B3 /* Services */,
 				70519C26280023F000FA33B3 /* App */,
@@ -224,6 +235,7 @@
 				70519C3228009D1C00FA33B3 /* Image.swift in Sources */,
 				70519C172800217700FA33B3 /* MainViewController.swift in Sources */,
 				70519C132800217700FA33B3 /* AppDelegate.swift in Sources */,
+				7042466A280BE2B2005F35E7 /* String+Subscript.swift in Sources */,
 				70519C2B2800265C00FA33B3 /* ImageGalleryViewController.swift in Sources */,
 				70519C362800AEE700FA33B3 /* CustomCell.swift in Sources */,
 				70519C152800217700FA33B3 /* SceneDelegate.swift in Sources */,

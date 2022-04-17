@@ -10,8 +10,7 @@ import Foundation
 class NetworkManager {
     enum Links: String {
         case randomImage = "https://picsum.photos/1300/2800/"
-        case randomImagesList = "https://picsum.photos/v2/list?page=1&limit=10"
-        case randomImageSetupList = "https://picsum.photos/v2/list?page="
+        case randomImagesList = "https://picsum.photos/v2/list"
     }
 
     static let shared = NetworkManager()
@@ -31,7 +30,8 @@ class NetworkManager {
             }
     }
 
-    func fetchImagesAF(from url: URL, completion: @escaping (Result<[Image], AFError>) -> Void) {
+    func fetchImagesAF(_ endPoint: String, completion: @escaping (Result<[Image], AFError>) -> Void) {
+        guard let url = URL(string: NetworkManager.Links.randomImagesList.rawValue + endPoint) else { return }
         AF.request(url)
             .validate()
             .responseData { response in

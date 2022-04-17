@@ -8,8 +8,9 @@
 import UIKit
 
 class ImageGalleryViewController: UICollectionViewController, PopUpDelegate {
-    func generate(URL: String) {
-        imageURLSettings = URL
+    
+    func getNew(endPoint: String) {
+        linkEndPoint = endPoint
     }
     
     // MARK: - IBOutlets
@@ -23,15 +24,16 @@ class ImageGalleryViewController: UICollectionViewController, PopUpDelegate {
             collectionView.reloadData()
         }
     }
-
+    
     @IBAction func settingsButtonPressed(_ sender: Any) {
+        PopupViewController.currentEndPoint = linkEndPoint
         PopupViewController.showPopup(parentVC: self)
     }
     
-    private var imageURLSettings = NetworkManager.Links.randomImagesList.rawValue {
+    private var linkEndPoint = "?page=1&limit=10" {
         didSet {
             updateImages()
-            collectionView.reloadData()
+//            collectionView.reloadData()
         }
     }
     
@@ -65,11 +67,10 @@ class ImageGalleryViewController: UICollectionViewController, PopUpDelegate {
     }
     
     private func updateImages() {
-        guard let url = URL(string: imageURLSettings) else { return }
-        NetworkManager.shared.fetchImagesAF(from: url) { result in
+        NetworkManager.shared.fetchImagesAF(linkEndPoint) { result in
             switch result {
-            case .success(let imagesData):
-                self.viewImages = imagesData
+            case .success(let imageData):
+                self.viewImages = imageData
             case .failure(let error):
                 print(error.localizedDescription)
             }
