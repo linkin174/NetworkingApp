@@ -411,7 +411,13 @@
                             <constraint firstItem="nFS-ux-7b6" firstAttribute="top" secondItem="1oI-ZN-Ywo" secondAttribute="topMargin" constant="16" id="ljI-2O-Gf5"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="gq4-BQ-tGz"/>
+                    <navigationItem key="navigationItem" id="gq4-BQ-tGz">
+                        <barButtonItem key="rightBarButtonItem" title="Item" image="square.and.arrow.up" catalog="system" id="7e2-Nv-Ihj">
+                            <connections>
+                                <action selector="shareButtonPressed:" destination="bha-cc-mY3" id="L3g-5w-kTc"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="activityIndicator" destination="Nx8-zA-YpT" id="jon-Nd-LfY"/>
                         <outlet property="authorNameLabel" destination="y9S-t5-FeM" id="Lu2-6q-RrC"/>

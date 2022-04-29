@@ -11,7 +11,7 @@ protocol PopUpDelegate {
     func getNew(endPoint: String)
 }
 
-class PopupViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate {
+class PopupViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate, UITextFieldDelegate {
     // MARK: - IB Outlets
 
     @IBOutlet var stepper: UIStepper!
@@ -25,10 +25,11 @@ class PopupViewController: UIViewController, UIPickerViewDataSource, UIPickerVie
 
     // MARK: - Private properties
     
-    private var endPoint = ""
     private var limit = 10
     private var page = "1"
     private var pagesMax = 10
+    var settings = UserDefaults()
+    
     
     static var currentEndPoint = ""
 
@@ -36,14 +37,17 @@ class PopupViewController: UIViewController, UIPickerViewDataSource, UIPickerVie
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setInitialValues(from: PopupViewController.currentEndPoint)
+        setInitialValues()
         pickerSetup()
         stepper.maximumValue = Double(pagesMax)
+        stepper.value = Double(page) ?? 1
         view.backgroundColor = UIColor.black.withAlphaComponent(0.55)
+        pageTextField.delegate = self
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        self.dismiss(animated: true)
+        textFieldDidEndEditing(pageTextField)
+//        self.dismiss(animated: true)
     }
     
     // MARK: - IB Actions
@@ -58,8 +62,11 @@ class PopupViewController: UIViewController, UIPickerViewDataSource, UIPickerVie
             delegate?.getNew(endPoint: generateEndPoint())
             dismiss(animated: true)
         } else {
-            alert()
+            textFieldDidEndEditing(pageTextField)
         }
+        settings.set(pagesMax, forKey: "pagesMax")
+        settings.set(limit, forKey: "limit")
+        settings.set(page, forKey: "page")
     }
 
     @IBAction func stepperValueChanged(_ sender: UIStepper) {
@@ -71,33 +78,17 @@ class PopupViewController: UIViewController, UIPickerViewDataSource, UIPickerVie
     private func generateEndPoint() -> String {
         page = String(pageTextField.text ?? "1")
         limit = pickerData[picker.selectedRow(inComponent: 0)]
-        endPoint = "?page=\(page)&limit=\(limit)"
+        let endPoint = "?page=\(page)&limit=\(limit)"
         return endPoint
     }
     
-    private func setInitialValues(from endPoint: String) {
-        guard let pageIndex = endPoint.distance(of: "=") else { return }
-        if let page = Int(endPoint[(pageIndex + 1)..<(pageIndex + 3)]) {
-            limit = Int(endPoint[(pageIndex + 10)..<(pageIndex + 12)]) ?? 10
-            self.page = String(page)
-            stepper.value = Double(self.page) ?? 1.0
-        } else {
-            limit = Int(endPoint[(pageIndex + 9)..<(pageIndex + 11)]) ?? 10
-            page = String(Int(endPoint[(pageIndex + 1)..<(pageIndex + 2)]) ?? 10)
-            stepper.value = Double(page) ?? 1.0
-        }
-        pageTextField.text = page
-        
+    private func setInitialValues() {
+        pagesMax = settings.value(forKey: "pagesMax") as? Int ?? 100
+        limit = settings.value(forKey: "limit") as? Int ?? 10
+        pageTextField.text = settings.value(forKey: "page") as? String ?? "1"
+        page = settings.value(forKey: "page") as? String ?? "1"
     }
 
-    private func alert() {
-        let alert = UIAlertController(title: "Error", message: "Maximum pages is \(pagesMax)", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: { _ in
-            self.pageTextField.text = String(self.pagesMax)
-        }))
-        present(alert, animated: true)
-    }
-    
     // MARK: - Protocol methods
     
     static func showPopup(parentVC: UICollectionViewController) {
@@ -149,4 +140,20 @@ class PopupViewController: UIViewController, UIPickerViewDataSource, UIPickerVie
             stepper.maximumValue = Double(pagesMax)
         }
     }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        guard let text = textField.text, let numberOfPages = Int(text) else {
+            textField.text = "1"
+            return
+        }
+        if numberOfPages > 100 {
+            textField.text = "100"
+        } else if numberOfPages > (1000 / limit) {
+            textField.text = String(1000 / limit)
+        }
+    }
+}
+
+extension UIViewController {
+    
 }

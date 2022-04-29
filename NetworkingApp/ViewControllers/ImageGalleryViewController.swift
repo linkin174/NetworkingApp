@@ -8,7 +8,7 @@
 import UIKit
 
 class ImageGalleryViewController: UICollectionViewController, PopUpDelegate {
-    
+
     func getNew(endPoint: String) {
         linkEndPoint = endPoint
     }
@@ -25,12 +25,15 @@ class ImageGalleryViewController: UICollectionViewController, PopUpDelegate {
         }
     }
     
+    // MARK: - Private properties
+   
+    
     @IBAction func settingsButtonPressed(_ sender: Any) {
         PopupViewController.currentEndPoint = linkEndPoint
         PopupViewController.showPopup(parentVC: self)
     }
     
-    private var linkEndPoint = "?page=1&limit=10" {
+    private var linkEndPoint = "?page=\(UserDefaults.value(forKey: "page") ?? "1")&limit=\(UserDefaults.value(forKey: "limit") ?? 10)" {
         didSet {
             updateImages()
 //            collectionView.reloadData()
