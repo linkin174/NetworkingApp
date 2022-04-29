@@ -27,13 +27,12 @@ class MainViewController: UIViewController {
     private func setBackgroundImage() {
         guard let url = getLinkDependingOnScreenSize() else { return }
         print("ScreenSize URL = \(url)")
-        NetworkManager.shared.fetchImageAF(from: url) { result in
-            switch result {
-            case .success(let image):
-                guard let image = UIImage(data: image) else { return }
+        Task {
+            do {
+                guard let image = UIImage(data: try await NetworkManager.shared.fetchImageAsync(from: url)) else { return }
                 self.view.backgroundColor = UIColor(patternImage: image)
-            case .failure(let error):
-                print(error)
+            } catch {
+                print(error.localizedDescription)
             }
         }
     }

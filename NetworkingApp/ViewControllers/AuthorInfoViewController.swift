@@ -40,30 +40,22 @@ class AuthorInfoViewController: UIViewController {
             activityIndicator.stopAnimating()
             return 
         }
-        NetworkManager.shared.fetchImageAF(from: imageURL) { result in
-            switch result {
-                
-            case .success(let imageData):
-                self.imageView.image = UIImage(data: imageData)
-            case .failure(let error):
+        Task {
+            do {
+                imageView.image = UIImage(data: try await NetworkManager.shared.fetchImageAsync(from: imageURL))
+            } catch {
                 print(error.localizedDescription)
             }
+           
         }
-        
-        
-//        NetworkManager.shared.fetchImageAF(from: image.downloadUrl) { result in
+//        NetworkManager.shared.fetchImageAF(from: imageURL) { result in
 //            switch result {
+//
 //            case .success(let imageData):
-//                guard let image = UIImage(data: imageData) else { return }
-//                ImageCache.shared.setObject(image, forKey: imageURL.path as NSString)
-//                print("Image from network: ", imageURL.path)
-//                self.imageView.image = image
-//                self.activityIndicator.stopAnimating()
+//                self.imageView.image = UIImage(data: imageData)
 //            case .failure(let error):
-//                print(error)
+//                print(error.localizedDescription)
 //            }
 //        }
-//
-       
     }
 }

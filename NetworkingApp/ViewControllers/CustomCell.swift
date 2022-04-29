@@ -13,7 +13,7 @@ class CustomCell: UICollectionViewCell {
     
     private var imageURL: URL? {
         didSet {
-            imageView.image = nil
+            imageView.image = UIImage(named: "dummy")
             updateImage()
         }
     }
@@ -21,34 +21,22 @@ class CustomCell: UICollectionViewCell {
     private func updateImage() {
         activityIndicator.startAnimating()
         guard let imageURL = imageURL else { return }
-        getImage(from: imageURL) { result in
-            switch result {
-            case .success(let image):
-                if imageURL == self.imageURL {
-                    self.imageView.image = image
-                    self.activityIndicator.stopAnimating()
-                }
-            case .failure(let error):
-                print(error)
-            }
+        if let cacheImage = ImageCache.shared.object(forKey: imageURL.path as NSString) {
+            imageView.image = cacheImage
+            return
+        } else {
+            downloadImage(from: imageURL)
         }
     }
     
-    private func getImage(from url: URL, completion: @escaping(Result<UIImage, Error>) -> Void) {
-        // Get image from cache
-        if let cacheImage = ImageCache.shared.object(forKey: url.path as NSString) {
-            completion(.success(cacheImage))
-            return
-        }
-        // Download image from url
-        NetworkManager.shared.fetchImageAF(from: url) { result in
-            switch result {
-            case .success(let imageData):
-                guard let image = UIImage(data: imageData) else { return }
-                ImageCache.shared.setObject(image, forKey: url.path as NSString)
-                completion(.success(image))
-            case .failure(let error):
-                completion(.failure(error))
+    private func downloadImage(from url: URL) {
+        Task {
+            do {
+                let image = UIImage(data: try await NetworkManager.shared.fetchImageAsync(from: url))
+                imageView.image = image
+                activityIndicator.stopAnimating()
+            } catch let error{
+                print(error.localizedDescription)
             }
         }
     }

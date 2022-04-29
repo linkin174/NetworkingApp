@@ -67,11 +67,10 @@ class ImageGalleryViewController: UICollectionViewController, PopUpDelegate {
     }
     
     private func updateImages() {
-        NetworkManager.shared.fetchImagesAF(linkEndPoint) { result in
-            switch result {
-            case .success(let imageData):
-                self.viewImages = imageData
-            case .failure(let error):
+        Task {
+            do {
+                viewImages = try await NetworkManager.shared.fetchImagesAsync(linkEndPoint)
+            } catch {
                 print(error.localizedDescription)
             }
         }

@@ -30,19 +30,20 @@ class RandomImageViewController: UIViewController {
     }
     
     private func getImage() {
+        guard let imageURL = URL(string: NetworkManager.Links.randomImage.rawValue) else { return }
         repeatButton.isHidden = true
         activityIndicator.startAnimating()
-        guard let imageURL = URL(string: NetworkManager.Links.randomImage.rawValue) else { return }
-        NetworkManager.shared.fetchImageAF(from: imageURL ) { result in
-            switch result {
-            case .success(let image):
-                    self.imageView.image = UIImage(data: image)
-                    self.activityIndicator.stopAnimating()
-                    self.repeatButton.isHidden = false
-            case .failure(_):
-                self.showAlert()
+        Task {
+            do {
+                let imageData = try await NetworkManager.shared.fetchImageAsync(from: imageURL)
+                imageView.image = UIImage(data: imageData)
+                activityIndicator.stopAnimating()
+                repeatButton.isHidden.toggle()
+            } catch {
+                print(error.localizedDescription)
             }
         }
+        
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {

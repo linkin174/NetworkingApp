@@ -4,7 +4,6 @@
 //
 //  Created by Aleksandr Kretov on 08.04.2022.
 //
-import Alamofire
 import Foundation
 
 class NetworkManager {
@@ -16,36 +15,16 @@ class NetworkManager {
     static let shared = NetworkManager()
 
     private init() {}
-
-    func fetchImageAF(from url: URL, completion: @escaping (Result<Data, AFError>) -> Void) {
-        AF.request(url)
-            .validate()
-            .responseData { response in
-                switch response.result {
-                case .success(let data):
-                    completion(.success(data))
-                case .failure(let error):
-                    print(error.localizedDescription)
-                }
-            }
+    
+    func fetchImageAsync(from url: URL) async throws -> Data {
+        let (data, _) = try await URLSession.shared.data(from: url)
+        return data
     }
 
-    func fetchImagesAF(_ endPoint: String, completion: @escaping (Result<[Image], AFError>) -> Void) {
-        guard let url = URL(string: NetworkManager.Links.randomImagesList.rawValue + endPoint) else { return }
-        AF.request(url)
-            .validate()
-            .responseData { response in
-                switch response.result {
-                case .success(let data):
-                    do {
-                        let images = try JSONDecoder().decode([Image].self, from: data)
-                        completion(.success(images))
-                    } catch {
-                        print(error.localizedDescription)
-                    }
-                case .failure(let error):
-                    completion(.failure(.createURLRequestFailed(error: error)))
-                }
-            }
+    func fetchImagesAsync(_ endPoint: String) async throws -> [Image] {
+        guard let url = URL(string: NetworkManager.Links.randomImagesList.rawValue + endPoint) else { return [] }
+        let (data, _) = try await URLSession.shared.data(from: url)
+        let images = try JSONDecoder().decode([Image].self, from: data)
+        return images
     }
 }
