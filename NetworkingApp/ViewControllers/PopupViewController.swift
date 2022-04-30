@@ -8,7 +8,7 @@
 import UIKit
 
 protocol PopUpDelegate {
-    func getNew(endPoint: String)
+    func createEndPoint(page: Int, limit: Int)
 }
 
 class PopupViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate, UITextFieldDelegate {
@@ -19,19 +19,17 @@ class PopupViewController: UIViewController, UIPickerViewDataSource, UIPickerVie
     @IBOutlet var pageTextField: UITextField!
     
     // MARK: - Public properties
-
-    var pickerData: [Int]!
+    
     var delegate: PopUpDelegate?
 
     // MARK: - Private properties
     
     private var limit = 10
-    private var page = "1"
-    private var pagesMax = 10
-    var settings = UserDefaults()
-    
-    
-    static var currentEndPoint = ""
+    private var page = 1
+    private var pagesMax: Int {
+        1000 / limit
+    }
+    private var pickerData: [Int]!
 
     // MARK: - Override methods
     
@@ -39,15 +37,12 @@ class PopupViewController: UIViewController, UIPickerViewDataSource, UIPickerVie
         super.viewDidLoad()
         setInitialValues()
         pickerSetup()
-        stepper.maximumValue = Double(pagesMax)
-        stepper.value = Double(page) ?? 1
         view.backgroundColor = UIColor.black.withAlphaComponent(0.55)
         pageTextField.delegate = self
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        textFieldDidEndEditing(pageTextField)
-//        self.dismiss(animated: true)
+        view.endEditing(true)
     }
     
     // MARK: - IB Actions
@@ -57,16 +52,16 @@ class PopupViewController: UIViewController, UIPickerViewDataSource, UIPickerVie
     }
     
     @IBAction func saveButtonPressed() {
-        let count = Int(pageTextField.text ?? "0") ?? 0
-        if count <= pagesMax {
-            delegate?.getNew(endPoint: generateEndPoint())
+        guard let text = pageTextField.text, let enteredPage = Int(text) else { return }
+        if enteredPage <= pagesMax {
+            page = enteredPage
+            UserDefaults.standard.set(page, forKey: "page")
+            UserDefaults.standard.set(limit, forKey: "limit")
+            delegate?.createEndPoint(page: page, limit: limit)
             dismiss(animated: true)
         } else {
-            textFieldDidEndEditing(pageTextField)
+            view.endEditing(true)
         }
-        settings.set(pagesMax, forKey: "pagesMax")
-        settings.set(limit, forKey: "limit")
-        settings.set(page, forKey: "page")
     }
 
     @IBAction func stepperValueChanged(_ sender: UIStepper) {
@@ -75,20 +70,14 @@ class PopupViewController: UIViewController, UIPickerViewDataSource, UIPickerVie
     
     // MARK: - Private methods
     
-    private func generateEndPoint() -> String {
-        page = String(pageTextField.text ?? "1")
-        limit = pickerData[picker.selectedRow(inComponent: 0)]
-        let endPoint = "?page=\(page)&limit=\(limit)"
-        return endPoint
+    private func setInitialValues() {
+        limit = UserDefaults.standard.value(forKey: "limit") as? Int ?? 10
+        page = UserDefaults.standard.value(forKey: "page") as? Int ?? 1
+        pageTextField.text = String(page)
+        stepper.value = Double(page)
+        stepper.maximumValue = Double(pagesMax)
     }
     
-    private func setInitialValues() {
-        pagesMax = settings.value(forKey: "pagesMax") as? Int ?? 100
-        limit = settings.value(forKey: "limit") as? Int ?? 10
-        pageTextField.text = settings.value(forKey: "page") as? String ?? "1"
-        page = settings.value(forKey: "page") as? String ?? "1"
-    }
-
     // MARK: - Protocol methods
     
     static func showPopup(parentVC: UICollectionViewController) {
@@ -110,7 +99,6 @@ class PopupViewController: UIViewController, UIPickerViewDataSource, UIPickerVie
         pickerData = Array(stride(from: minNum, to: maxNum + 1, by: 10))
         let pickerIndex = pickerData.firstIndex(of: limit)
         picker.selectRow(pickerIndex ?? 0, inComponent: 0, animated: true)
-        pagesMax = 1000 / pickerData[picker.selectedRow(inComponent: 0)]
     }
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
@@ -132,12 +120,14 @@ class PopupViewController: UIViewController, UIPickerViewDataSource, UIPickerVie
     // MARK: - Picker view delegate
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        pagesMax = 1000 / pickerData[picker.selectedRow(inComponent: 0)]
+        limit = pickerData[picker.selectedRow(inComponent: 0)]
         stepper.maximumValue = Double(pagesMax)
-        guard let number = Int(pageTextField.text ?? "0") else { return }
+        guard let text = pageTextField.text, let number = Int(text) else { return }
         if number > pagesMax {
             pageTextField.text = String(pagesMax)
-            stepper.maximumValue = Double(pagesMax)
+            stepper.value = stepper.maximumValue
+        } else {
+            stepper.value = Double(number)
         }
     }
     
@@ -146,14 +136,10 @@ class PopupViewController: UIViewController, UIPickerViewDataSource, UIPickerVie
             textField.text = "1"
             return
         }
-        if numberOfPages > 100 {
-            textField.text = "100"
-        } else if numberOfPages > (1000 / limit) {
-            textField.text = String(1000 / limit)
+        stepper.value = Double(numberOfPages)
+        if numberOfPages > pagesMax {
+            textField.text = String(pagesMax)
+            stepper.value = Double(pagesMax)
         }
     }
-}
-
-extension UIViewController {
-    
 }

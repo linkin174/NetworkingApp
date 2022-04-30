@@ -8,11 +8,15 @@
 import UIKit
 
 class ImageGalleryViewController: UICollectionViewController, PopUpDelegate {
-
-    func getNew(endPoint: String) {
-        linkEndPoint = endPoint
-    }
     
+    func createEndPoint(page: Int, limit: Int) {
+        let newEndPoint = "?page=\(page)&limit=\(limit)"
+        if newEndPoint != linkEndPoint {
+            linkEndPoint = newEndPoint
+            UserDefaults.standard.set(newEndPoint, forKey: "endPoint")
+        }
+    }
+
     // MARK: - IBOutlets
 
     @IBOutlet var activityIndicator: UIActivityIndicatorView!
@@ -29,14 +33,12 @@ class ImageGalleryViewController: UICollectionViewController, PopUpDelegate {
    
     
     @IBAction func settingsButtonPressed(_ sender: Any) {
-        PopupViewController.currentEndPoint = linkEndPoint
         PopupViewController.showPopup(parentVC: self)
     }
     
-    private var linkEndPoint = "?page=\(UserDefaults.value(forKey: "page") ?? "1")&limit=\(UserDefaults.value(forKey: "limit") ?? 10)" {
+    private var linkEndPoint: String = UserDefaults.standard.value(forKey: "endPoint") as? String ?? "?page=1&limit=10" {
         didSet {
             updateImages()
-//            collectionView.reloadData()
         }
     }
     

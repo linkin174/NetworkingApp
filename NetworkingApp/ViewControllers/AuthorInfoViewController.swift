@@ -42,9 +42,9 @@ class AuthorInfoViewController: UIViewController {
         } else {
             Task {
                 do {
-                    self.imageView.image = UIImage(data: try await NetworkManager.shared.fetchImageAsync(from: imageURL))
+                    let imageData = try await NetworkManager.shared.fetchImageAsync(from: imageURL)
+                    self.imageView.image = UIImage(data: imageData)
                     self.activityIndicator.stopAnimating()
-                //TODO: fix cache
                 } catch {
                     print(error.localizedDescription)
                 }

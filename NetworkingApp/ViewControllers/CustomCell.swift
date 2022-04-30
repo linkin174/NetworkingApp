@@ -19,7 +19,6 @@ class CustomCell: UICollectionViewCell {
     }
     
     private func updateImage() {
-        activityIndicator.startAnimating()
         guard let imageURL = imageURL else { return }
         if let cacheImage = ImageCache.shared.object(forKey: imageURL.path as NSString) {
             imageView.image = cacheImage
@@ -30,11 +29,14 @@ class CustomCell: UICollectionViewCell {
     }
     
     private func downloadImage(from url: URL) {
+        activityIndicator.startAnimating()
         Task {
             do {
-                let image = UIImage(data: try await NetworkManager.shared.fetchImageAsync(from: url))
-                imageView.image = image
-                activityIndicator.stopAnimating()
+                if let image = UIImage(data: try await NetworkManager.shared.fetchImageAsync(from: url)) {
+                    ImageCache.shared.setObject(image, forKey: url.path as NSString)
+                    imageView.image = image
+                    activityIndicator.stopAnimating()
+                }
             } catch let error{
                 print(error.localizedDescription)
             }

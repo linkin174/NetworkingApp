@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		70370F17281DEFB500C7E7F7 /* UIButton+CAAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70370F16281DEFB500C7E7F7 /* UIButton+CAAnimation.swift */; };
 		703A0C112809274D00CF7076 /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 703A0C102809274D00CF7076 /* ImageCache.swift */; };
 		7042466A280BE2B2005F35E7 /* String+Subscript.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70424669280BE2B2005F35E7 /* String+Subscript.swift */; };
 		70519C132800217700FA33B3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70519C122800217700FA33B3 /* AppDelegate.swift */; };
@@ -25,6 +26,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		70370F16281DEFB500C7E7F7 /* UIButton+CAAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+CAAnimation.swift"; sourceTree = "<group>"; };
 		703A0C102809274D00CF7076 /* ImageCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCache.swift; sourceTree = "<group>"; };
 		70424669280BE2B2005F35E7 /* String+Subscript.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Subscript.swift"; sourceTree = "<group>"; };
 		70519C0F2800217700FA33B3 /* NetworkingApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NetworkingApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -59,6 +61,7 @@
 			isa = PBXGroup;
 			children = (
 				70424669280BE2B2005F35E7 /* String+Subscript.swift */,
+				70370F16281DEFB500C7E7F7 /* UIButton+CAAnimation.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -234,6 +237,7 @@
 				7042466A280BE2B2005F35E7 /* String+Subscript.swift in Sources */,
 				70519C2B2800265C00FA33B3 /* ImageGalleryViewController.swift in Sources */,
 				70519C362800AEE700FA33B3 /* CustomCell.swift in Sources */,
+				70370F17281DEFB500C7E7F7 /* UIButton+CAAnimation.swift in Sources */,
 				70519C152800217700FA33B3 /* SceneDelegate.swift in Sources */,
 				709FA0EC280168F600240C9B /* AuthorInfoViewController.swift in Sources */,
 				709FA0F028019C9B00240C9B /* RandomImageViewController.swift in Sources */,

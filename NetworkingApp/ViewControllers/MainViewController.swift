@@ -26,7 +26,6 @@ class MainViewController: UIViewController {
     
     private func setBackgroundImage() {
         guard let url = getLinkDependingOnScreenSize() else { return }
-        print("ScreenSize URL = \(url)")
         Task {
             do {
                 guard let image = UIImage(data: try await NetworkManager.shared.fetchImageAsync(from: url)) else { return }
