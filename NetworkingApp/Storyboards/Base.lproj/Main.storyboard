@@ -51,22 +51,23 @@
                                 </constraints>
                             </stackView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="1fB-gG-faN">
-                                <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
+                                <rect key="frame" x="-80" y="-80" width="588" height="1006"/>
                             </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemGray2Color"/>
                         <constraints>
-                            <constraint firstItem="1fB-gG-faN" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="5Js-Yd-R7k"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="1fB-gG-faN" secondAttribute="trailing" id="Omy-do-r2l"/>
+                            <constraint firstItem="1fB-gG-faN" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="-80" id="5Js-Yd-R7k"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="1fB-gG-faN" secondAttribute="trailing" constant="-80" id="Omy-do-r2l"/>
                             <constraint firstItem="blM-ka-j6c" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="UHO-Rh-1aN"/>
                             <constraint firstAttribute="bottom" secondItem="1fB-gG-faN" secondAttribute="bottom" id="gdM-L7-WeB"/>
-                            <constraint firstItem="1fB-gG-faN" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="hZ2-xg-Y4Q"/>
+                            <constraint firstItem="1fB-gG-faN" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="-80" id="hZ2-xg-Y4Q"/>
                             <constraint firstItem="blM-ka-j6c" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="rbg-q5-ApP"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Home" id="eBw-g4-ZOi"/>
                     <connections>
+                        <outlet property="imageView" destination="1fB-gG-faN" id="zwi-Q3-uT3"/>
                         <segue destination="A7N-9x-shP" kind="show" identifier="toImageGallery" id="Qkr-3a-JSZ"/>
                         <segue destination="fq3-TR-azw" kind="presentation" identifier="toRandomImage" id="heh-Vy-nJI"/>
                     </connections>
@@ -159,7 +160,7 @@
                                 <rect key="frame" x="195.66666666666666" y="417.66666666666669" width="37" height="37"/>
                                 <color key="color" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </activityIndicatorView>
-                            <button contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" reversesTitleShadowWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dY5-7p-0hc">
+                            <button hidden="YES" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" reversesTitleShadowWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dY5-7p-0hc">
                                 <rect key="frame" x="175.33333333333334" y="775" width="77.333333333333343" height="77"/>
                                 <color key="backgroundColor" systemColor="systemTealColor"/>
                                 <constraints>
@@ -298,10 +299,10 @@
                                                 </constraints>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="rcJ-h1-vMN">
-                                                <rect key="frame" x="0.0" y="367.33333333333331" width="233.33333333333334" height="45"/>
+                                                <rect key="frame" x="0.0" y="314" width="233.33333333333334" height="98.333333333333314"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ui7-5R-CLg">
-                                                        <rect key="frame" x="0.0" y="5.6666666666666856" width="112.66666666666667" height="34"/>
+                                                        <rect key="frame" x="0.0" y="32.333333333333314" width="112.66666666666667" height="34"/>
                                                         <color key="backgroundColor" systemColor="systemRedColor"/>
                                                         <color key="tintColor" systemColor="systemRedColor"/>
                                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
@@ -316,7 +317,7 @@
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XjU-e0-VXc">
-                                                        <rect key="frame" x="120.66666666666666" y="5.6666666666666856" width="112.66666666666666" height="34"/>
+                                                        <rect key="frame" x="120.66666666666666" y="32.333333333333314" width="112.66666666666666" height="34"/>
                                                         <color key="backgroundColor" systemColor="systemGreenColor"/>
                                                         <color key="tintColor" systemColor="systemGreenColor"/>
                                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>

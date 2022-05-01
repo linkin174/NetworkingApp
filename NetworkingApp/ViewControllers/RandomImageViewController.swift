@@ -10,7 +10,6 @@
 import UIKit
 
 class RandomImageViewController: UIViewController {
-    
     @IBOutlet var activityIndicator: UIActivityIndicatorView!
     @IBOutlet var imageView: UIImageView!
     @IBOutlet var repeatButton: UIButton!
@@ -19,8 +18,6 @@ class RandomImageViewController: UIViewController {
         repeatButton.layer.cornerRadius = repeatButton.frame.height / 2
         activityIndicator.color = .systemBackground
         view.backgroundColor = .gray
-        repeatButton.isHidden = true
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -40,9 +37,11 @@ class RandomImageViewController: UIViewController {
     }
     
     // MARK: - Method with direct data
+
     private func getImage() {
         guard let imageURL = URL(string: NetworkManager.Links.randomImage.rawValue) else {
-            return }
+            return
+        }
         repeatButton.fadeOut()
         activityIndicator.startAnimating()
         Task {
@@ -55,29 +54,24 @@ class RandomImageViewController: UIViewController {
                 print(error.localizedDescription)
             }
         }
-        
     }
 
-    
     /*
-    // MARK: - Method with Result
-    private func getImage() {
-        repeatButton.isHidden = true
-        activityIndicator.startAnimating()
-        Task {
-            let result = try await NetworkManager.shared.fetchImage(from: NetworkManager.Links.randomImage.rawValue)
-            switch result {
-            case .success(let imageData):
-                imageView.image = UIImage(data: imageData)
-                activityIndicator.stopAnimating()
-                repeatButton.isHidden.toggle()
-            case .failure(let error):
-                print(error)
-            }
-        }
-    }
-    */
+     // MARK: - Method with Result
+     private func getImage() {
+         repeatButton.isHidden = true
+         activityIndicator.startAnimating()
+         Task {
+             let result = try await NetworkManager.shared.fetchImage(from: NetworkManager.Links.randomImage.rawValue)
+             switch result {
+             case .success(let imageData):
+                 imageView.image = UIImage(data: imageData)
+                 activityIndicator.stopAnimating()
+                 repeatButton.isHidden.toggle()
+             case .failure(let error):
+                 print(error)
+             }
+         }
+     }
+     */
 }
-
-
-

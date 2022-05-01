@@ -9,6 +9,8 @@ import UIKit
 
 class MainViewController: UIViewController {
     
+    @IBOutlet var imageView: UIImageView!
+    
     // MARK: - IBActions
 
     @IBAction func showRandomImagePressed() {
@@ -22,6 +24,7 @@ class MainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setBackgroundImage()
+        view.sendSubviewToBack(imageView)
     }
     
     private func setBackgroundImage() {
@@ -29,7 +32,10 @@ class MainViewController: UIViewController {
         Task {
             do {
                 guard let image = UIImage(data: try await NetworkManager.shared.fetchImageAsync(from: url)) else { return }
-                self.view.backgroundColor = UIColor(patternImage: image)
+                //self.view.backgroundColor = UIColor(patternImage: image)
+                imageView.image = image
+                imageView.scaleAnimation()
+                
             } catch {
                 print(error.localizedDescription)
             }

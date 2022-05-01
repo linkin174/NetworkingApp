@@ -21,7 +21,7 @@ extension UIButton {
     
     func fadeIn() {
         let fadeIn = CABasicAnimation(keyPath: "opacity")
-        fadeIn.duration = 0.6
+        fadeIn.duration = 1
         fadeIn.fromValue = 0.0
         fadeIn.toValue = 1.0
         layer.add(fadeIn, forKey: "fadeIn")

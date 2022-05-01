@@ -29,6 +29,7 @@ class PopupViewController: UIViewController, UIPickerViewDataSource, UIPickerVie
     private var pagesMax: Int {
         1000 / limit
     }
+
     private var pickerData: [Int]!
 
     // MARK: - Override methods
@@ -53,6 +54,7 @@ class PopupViewController: UIViewController, UIPickerViewDataSource, UIPickerVie
     
     @IBAction func saveButtonPressed() {
         guard let text = pageTextField.text, let enteredPage = Int(text) else { return }
+      
         if enteredPage <= pagesMax {
             page = enteredPage
             UserDefaults.standard.set(page, forKey: "page")
@@ -77,7 +79,7 @@ class PopupViewController: UIViewController, UIPickerViewDataSource, UIPickerVie
         stepper.value = Double(page)
         stepper.maximumValue = Double(pagesMax)
     }
-    
+
     // MARK: - Protocol methods
     
     static func showPopup(parentVC: UICollectionViewController) {

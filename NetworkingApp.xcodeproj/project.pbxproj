@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		70370F17281DEFB500C7E7F7 /* UIButton+CAAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70370F16281DEFB500C7E7F7 /* UIButton+CAAnimation.swift */; };
 		703A0C112809274D00CF7076 /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 703A0C102809274D00CF7076 /* ImageCache.swift */; };
-		7042466A280BE2B2005F35E7 /* String+Subscript.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70424669280BE2B2005F35E7 /* String+Subscript.swift */; };
 		70519C132800217700FA33B3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70519C122800217700FA33B3 /* AppDelegate.swift */; };
 		70519C152800217700FA33B3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70519C142800217700FA33B3 /* SceneDelegate.swift */; };
 		70519C172800217700FA33B3 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70519C162800217700FA33B3 /* MainViewController.swift */; };
@@ -22,13 +21,13 @@
 		70519C362800AEE700FA33B3 /* CustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70519C352800AEE700FA33B3 /* CustomCell.swift */; };
 		709FA0EC280168F600240C9B /* AuthorInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 709FA0EB280168F600240C9B /* AuthorInfoViewController.swift */; };
 		709FA0F028019C9B00240C9B /* RandomImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 709FA0EF28019C9B00240C9B /* RandomImageViewController.swift */; };
+		70CB2D35281DF25C0069FB14 /* UIVIew+CAAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70CB2D34281DF25C0069FB14 /* UIVIew+CAAnimation.swift */; };
 		70E37CB2280AFF6E00427515 /* PopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70E37CB1280AFF6E00427515 /* PopupViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		70370F16281DEFB500C7E7F7 /* UIButton+CAAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+CAAnimation.swift"; sourceTree = "<group>"; };
 		703A0C102809274D00CF7076 /* ImageCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCache.swift; sourceTree = "<group>"; };
-		70424669280BE2B2005F35E7 /* String+Subscript.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Subscript.swift"; sourceTree = "<group>"; };
 		70519C0F2800217700FA33B3 /* NetworkingApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NetworkingApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		70519C122800217700FA33B3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		70519C142800217700FA33B3 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -43,6 +42,7 @@
 		70519C352800AEE700FA33B3 /* CustomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCell.swift; sourceTree = "<group>"; };
 		709FA0EB280168F600240C9B /* AuthorInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorInfoViewController.swift; sourceTree = "<group>"; };
 		709FA0EF28019C9B00240C9B /* RandomImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomImageViewController.swift; sourceTree = "<group>"; };
+		70CB2D34281DF25C0069FB14 /* UIVIew+CAAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIVIew+CAAnimation.swift"; sourceTree = "<group>"; };
 		70E37CB1280AFF6E00427515 /* PopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -60,8 +60,8 @@
 		70424668280BE27A005F35E7 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				70424669280BE2B2005F35E7 /* String+Subscript.swift */,
 				70370F16281DEFB500C7E7F7 /* UIButton+CAAnimation.swift */,
+				70CB2D34281DF25C0069FB14 /* UIVIew+CAAnimation.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -234,9 +234,9 @@
 				70519C3228009D1C00FA33B3 /* Image.swift in Sources */,
 				70519C172800217700FA33B3 /* MainViewController.swift in Sources */,
 				70519C132800217700FA33B3 /* AppDelegate.swift in Sources */,
-				7042466A280BE2B2005F35E7 /* String+Subscript.swift in Sources */,
 				70519C2B2800265C00FA33B3 /* ImageGalleryViewController.swift in Sources */,
 				70519C362800AEE700FA33B3 /* CustomCell.swift in Sources */,
+				70CB2D35281DF25C0069FB14 /* UIVIew+CAAnimation.swift in Sources */,
 				70370F17281DEFB500C7E7F7 /* UIButton+CAAnimation.swift in Sources */,
 				70519C152800217700FA33B3 /* SceneDelegate.swift in Sources */,
 				709FA0EC280168F600240C9B /* AuthorInfoViewController.swift in Sources */,
