@@ -22,6 +22,7 @@ class CustomCell: UICollectionViewCell {
         guard let imageURL = imageURL else { return }
         if let cacheImage = ImageCache.shared.object(forKey: imageURL.path as NSString) {
             imageView.image = cacheImage
+            activityIndicator.stopAnimating()
             return
         } else {
             downloadImage(from: imageURL)
