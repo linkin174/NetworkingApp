@@ -21,21 +21,26 @@ class MainViewController: UIViewController {
         performSegue(withIdentifier: "toImageGallery", sender: nil)
     }
     
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        setBackgroundImage()
+        NotificationCenter.default.addObserver(self, selector: #selector(setBackgroundImage), name: UIApplication.willEnterForegroundNotification, object: nil)
+       setBackgroundImage()
         view.sendSubviewToBack(imageView)
     }
     
-    private func setBackgroundImage() {
+    @objc private func appBecomeActive() {
+        setBackgroundImage()
+    }
+    
+    @objc private func setBackgroundImage() {
         guard let url = getLinkDependingOnScreenSize() else { return }
         Task {
             do {
                 guard let image = UIImage(data: try await NetworkManager.shared.fetchImageAsync(from: url)) else { return }
-                //self.view.backgroundColor = UIColor(patternImage: image)
                 imageView.image = image
                 imageView.scaleAnimation()
-                
             } catch {
                 print(error.localizedDescription)
             }
